@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "419160625782",
+    "project_id": "sports-696cc",
+    "storage_bucket": "sports-696cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419160625782:android:3fa0c74ea831b456eec557",
+        "android_client_info": {
+          "package_name": "com.hujihackathon.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419160625782-aj6jf5po213amgomkf7fckub6js0fi56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHFNJTo7mwnKU4G7K5Y4UlMa6hYOzovg8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419160625782-aj6jf5po213amgomkf7fckub6js0fi56.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
