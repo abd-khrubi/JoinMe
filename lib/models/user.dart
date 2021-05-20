@@ -1,9 +1,13 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/models/activity.dart';
+import 'package:flutter_app/models/campus.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'user.g.dart';
+
+@JsonSerializable(nullable: true)
 class User {
   String uid;
   String email;
@@ -14,18 +18,38 @@ class User {
   Set<Campus> preferredCampuses;
   Set<Activity> favoriteSports;
 
-
   User(this.uid, this.email, this.username, this.phoneNumber, this.imageUid,
       this.preferredCampuses, this.favoriteSports);
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 
   // User(this.uid, this.email, this.username, this.preferredCampuses,
   //     this.favoriteSports);
 
-  static User fromDocument(String uid, DocumentSnapshot doc){
+  static User? fromDocument(String uid, DocumentSnapshot<User> doc) {
     log("Got user: " + doc.data.toString());
-    return User(uid, doc.data['email'], '', doc.data['phoneNumber'], doc.data['imageUid'],
-    null, null // TODO campus/activity lists
-    );
+    return null;
+    // return User(uid, doc.data['email'], '', doc.data['phoneNumber'],
+    //     doc.data['imageUid'], <Campus>[], <Activity>[] // TODO campus/activity lists
+    //     );
   } // TODO read user from document data
 
+  Map<String, dynamic> toMap() {
+    return {
+      'email': this.email,
+      'imageUid': this.imageUid,
+      'phoneNumber': this.phoneNumber,
+      'username': this.username,
+      'preferredCampuses':
+          this.preferredCampuses.map((e) => e.toString()).toList(),
+      'favoriteSports': this.favoriteSports.map((e) => e.toString()).toList()
+    };
+  }
+
+  @override
+  String toString() {
+    return 'User{uid: $uid, email: $email, username: $username, phoneNumber: $phoneNumber, imageUid: $imageUid, preferredCampuses: $preferredCampuses, favoriteSports: $favoriteSports}';
+  }
 }

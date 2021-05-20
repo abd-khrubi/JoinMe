@@ -6,7 +6,7 @@ import 'package:flutter_app/services/user_service.dart';
 import '../main.dart';
 
 class TestScreen extends StatelessWidget {
-  final Firestore firestore = Firestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final TextEditingController _nameTextFieldController =
       TextEditingController();
 
@@ -20,7 +20,7 @@ class TestScreen extends StatelessWidget {
         ? _nameTextFieldController.text
         : "hello";
 
-    await testCollection.document(username).setData({
+    await testCollection.doc(username).set({
       'Hello': 'This is a test',
       'Testing what': 'Testing firestore'
     }).then((value) {
