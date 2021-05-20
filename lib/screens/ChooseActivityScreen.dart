@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/campus.dart';
-
+import '../models/activity.dart.';
 class ChooseActivityScreen extends StatelessWidget {
   Campus currentCampus;
 
@@ -35,7 +35,7 @@ class ChooseActivityScreen extends StatelessWidget {
   Widget _activityList() {
     return GridView.builder(
         padding: EdgeInsets.symmetric(vertical: 15.0),
-        itemCount: activities.length,
+        itemCount: Activity.values.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             child: Column(
@@ -45,7 +45,7 @@ class ChooseActivityScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: null,
                     child: Image.asset(
-                      images[index],
+                      activityImagePath(Activity.values[index]),
                       height: 100,
                       width: 100,
                       scale: 10,
@@ -64,7 +64,7 @@ class ChooseActivityScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(activities[index]),
+                Text(activityToString(Activity.values[index])),
               ],
             ),
           );

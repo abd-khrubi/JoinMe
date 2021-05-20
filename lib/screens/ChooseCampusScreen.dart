@@ -11,28 +11,7 @@ class ChooseCampusScreen extends StatelessWidget {
   ];
 
   void campusButtonPressed(BuildContext context, String campus) {
-    Campus currentCampus = Campus.givat;
-    switch (campus) {
-      case "Givat Ram":
-        {
-          currentCampus = Campus.givat;
-        }
-        break;
-      case "Ein Karem":
-        {
-          currentCampus = Campus.ein_karem;
-        }
-        break;
-      case "MT.Scopus":
-        {
-          currentCampus = Campus.har;
-        }
-        break;
-      case "Rehovot":
-        {
-          currentCampus = Campus.rahovot;
-        }
-    }
+    Campus currentCampus = stringToCampus(campus);
     Navigator.push(
         context,
         MaterialPageRoute(
