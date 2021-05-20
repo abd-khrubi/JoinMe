@@ -5,9 +5,11 @@ class ActivityPath {
   Activity pathActivity;
   Campus pathCampus;
   String pathName;
+  double pathLength;
 
-  ActivityPath(this.pathActivity, this.pathCampus, this.pathName);
+  ActivityPath(
+      this.pathActivity, this.pathCampus, this.pathName, this.pathLength);
 
-  // TODO
-  // Geo location
+// TODO
+// Geo location
 }

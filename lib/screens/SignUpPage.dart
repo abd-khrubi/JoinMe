@@ -4,8 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/ProfilePage.dart';
+import 'package:flutter_app/utils/firebase_utils.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -16,20 +17,27 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
-  User usr= new User('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
+  AppUser usr = new AppUser('1', 'hussam@gmail.com', 'hussamsal', '421', 'dsa',
+      {Campus.har}, {Activity.chess});
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late File _image;
   final picker = ImagePicker();
+  var picked = false;
 
-  signUp() {
-    Text("Sign Up");
+  signUp(BuildContext context) {
     if (userController.text != "" &&
         emailController.text != "" &&
-        passwordController.text != "") {}
+        passwordController.text != "") {
+      register(userController.text, emailController.text, passwordController.text).then((user) {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ProfilePage(user!)));
+      }).catchError((error) {
+        print(error);
+      });
+    }
   }
 
   Future getImage() async {
@@ -61,9 +69,13 @@ class _SignUpPageState extends State<SignUpPage> {
                             getImage();
                           },
                           child: CircleAvatar(
-                            radius: 50.0, backgroundImage:  (_image != null) ? Image.file(_image).image : Image.asset( 'assets/images/blank_avatar.png').image),
-
-                          ),
+                              radius: 50.0,
+                              backgroundImage: (picked)
+                                  ? Image.file(_image).image
+                                  : Image.asset(
+                                          'assets/images/blank_avatar.png')
+                                      .image),
+                        ),
                         Text("Choose a profile picture",
                             style: TextStyle(fontSize: 16.0)),
                         SizedBox(height: 40),
@@ -110,10 +122,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: passwordController,
                         ),
                         ElevatedButton(
-                            onPressed: (){
-                               signUp();
-                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(user: usr)));
-                            }, child: Text(''),
+                          onPressed: () {
+                            signUp(context);
+
+                          },
+                          child: Text(''),
                         )
                       ],
                     )))));

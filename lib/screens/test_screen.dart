@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_app/screens/google_map_screen.dart';
@@ -11,8 +12,6 @@ class TestScreen extends StatelessWidget {
       TextEditingController();
 
   Future _pressedButton() async {
-    var userSrc = locator<UserService>();
-    print(userSrc.getCachedUser());
 
     CollectionReference testCollection = firestore.collection('test');
 

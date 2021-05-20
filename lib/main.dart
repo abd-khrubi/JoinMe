@@ -1,11 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/screens/SignInPage.dart';
+import 'package:flutter_app/screens/choose_path_screen.dart';
+import 'package:flutter_app/screens/requests_screen.dart';
 import 'package:get_it/get_it.dart';
 
-import 'models/user.dart';
+import 'models/app_user.dart';
 import 'services/user_service.dart';
 
 GetIt locator = GetIt.instance;
@@ -19,19 +23,17 @@ void main() async {
   await Firebase.initializeApp();
 
   setupLocator();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  AppUser usr = AppUser("", "hi@gmail.com", "stuff", "119929292", "9292", {},{});
   @override
   Widget build(BuildContext context) {
-    var userSrv = locator<UserService>();
-    print('Getting user....');
-    var user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
-    print(user);
 
-    var usr = new User('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
+    var usr = new AppUser('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
         '', {Campus.givat, Campus.har}, {Activity.basketball});
     // saveUser(usr).then((value) => {
     //   print('Done saving user')
@@ -55,7 +57,9 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignInPage(),
+
+      // home: ChoosePathScreen(Activity.running, Campus.rahovot),]
+      home: RequestsScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

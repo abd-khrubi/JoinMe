@@ -1,14 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_app/models/user.dart';
 import 'package:flutter_app/screens/HomePage.dart';
 import '../models/campus.dart';
 import '../models/activity.dart';
 
-class ProfilePage extends StatefulWidget {
-  final User user;
+import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/models/app_user.dart';
 
-  const ProfilePage({Key? key, required this.user}) : super(key: key);
+
+class ProfilePage extends StatefulWidget {
+  final AppUser user;
+
+  const ProfilePage(this.user);
+
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -28,14 +34,22 @@ class _ProfilePageState extends State<ProfilePage> {
     false
   ];
 
+  bool prefersGivatRam = false;
+  bool prefersMountScopus = false;
+  bool prefersRehovot = false;
+  bool prefersEinKarem = false;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Profile Page ${widget.user.username}",
-          style: TextStyle(fontSize: 18.0),
+        appBar: AppBar(
+          title: Text(
+            "Profile Page ${widget.user.username}",
+            style: TextStyle(fontSize: 18.0),
+          ),
         ),
+
       ),
       backgroundColor: Colors.white,
       body: ListView(
@@ -146,5 +160,6 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
     );
+
   }
 }
