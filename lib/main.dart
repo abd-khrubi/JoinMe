@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/screens/HomePage.dart';
+import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:flutter_app/screens/SignInPage.dart';
 import 'package:flutter_app/screens/choose_path_screen.dart';
 import 'package:flutter_app/screens/requests_screen.dart';
 import 'package:flutter_app/services/request_service.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_app/models/app_user.dart';
+
 
 import 'models/app_user.dart';
 import 'services/user_service.dart';
@@ -31,7 +35,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  AppUser usr = AppUser("", "hi@gmail.com", "stuff", "119929292", "9292", {},{});
   @override
   Widget build(BuildContext context) {
 
@@ -61,7 +64,7 @@ class MyApp extends StatelessWidget {
       ),
 
       // home: ChoosePathScreen(Activity.running, Campus.rahovot),]
-      home: RequestsScreen(),
+      home: HomePage(usr),
       debugShowCheckedModeBanner: false,
     );
   }

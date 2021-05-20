@@ -1,41 +1,61 @@
 enum Activity {
   basketball,
   chess,
-  football,
+  cycling,
+  working_out,
   running,
+  skipping_rope,
+  swimming,
+  football,
 }
 
 String activityToString(Activity activity) {
   switch (activity) {
+    case Activity.cycling:
+      {
+        return "Cycling";
+      }
     case Activity.basketball:
       {
         return 'Basketball';
       }
-      break;
 
     case Activity.chess:
       {
         return 'Chess';
       }
-      break;
-    case Activity.football:
-      {
-        return 'Football';
-      }
-      break;
+
     case Activity.running:
       {
         return 'Running';
       }
-      break;
+    case Activity.working_out:
+      {
+        return "Working Out";
+      }
+    case Activity.skipping_rope:
+      {
+        return "Skipping Rope";
+      }
+    case Activity.swimming:
+      {
+        return "Swimming";
+      }
+    case Activity.football:
+      {
+        return 'Football';
+      }
   }
-
-  return "";
 }
 
 String activityImagePath(Activity activity) {
   String result = 'assets/images/';
   switch (activity) {
+    case Activity.football:
+      {
+        result += 'football.png';
+      }
+      break;
     case Activity.basketball:
       {
         result += 'basketball.png';
@@ -57,6 +77,25 @@ String activityImagePath(Activity activity) {
         result += 'shoes.png';
       }
       break;
+    case Activity.swimming:
+      {
+        result += 'swimming.png';
+      }
+      break;
+    case Activity.cycling:
+      {
+        result += 'cycling.png';
+      }
+      break;
+    case Activity.skipping_rope:
+      {
+        result += 'skipping-rope.png';
+      }
+      break;
+    case Activity.working_out:
+      {
+        result += 'dumbell.png';
+      }
   }
   return result;
 }
