@@ -1,0 +1,17 @@
+import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/models/activity.dart';
+
+class User {
+  String uid;
+  String email;
+  String username;
+  String phoneNumber;
+  String imageUid;
+
+  List<Campus> preferredCampuses;
+  List<Activity> favoriteSports;
+
+  User(this.uid, this.email, this.username, this.preferredCampuses,
+      this.favoriteSports);
+
+}
