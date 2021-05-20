@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/screens/SignUpPage.dart';
 import 'package:flutter_app/screens/test_screen.dart';
 import 'package:flutter_app/utils/firebase_utils.dart';
 import 'package:get_it/get_it.dart';
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: TestScreen(),
+      home: SignUpPage(),
       debugShowCheckedModeBanner: false,
     );
   }

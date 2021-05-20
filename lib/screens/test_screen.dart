@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/google_map_screen.dart';
+// import 'package:flutter_app/screens/google_map_screen.dart';
 import 'package:flutter_app/services/user_service.dart';
 
 import '../main.dart';
@@ -55,8 +55,8 @@ class TestScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 child: Text("Say hi to firebase!"),
-                onPressed: () => Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => GoogleMapScreen())),
+                // onPressed: () => Navigator.of(context)
+                //     .push(MaterialPageRoute(builder: (_) => GoogleMapScreen())),
                 // onPressed: _pressedButton,
               ),
             ],

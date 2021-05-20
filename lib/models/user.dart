@@ -15,8 +15,8 @@ class User {
   String phoneNumber;
   String imageUid;
 
-  List<Campus> preferredCampuses;
-  List<Activity> favoriteSports;
+  Set<Campus> preferredCampuses;
+  Set<Activity> favoriteSports;
 
   User(this.uid, this.email, this.username, this.phoneNumber, this.imageUid,
       this.preferredCampuses, this.favoriteSports);
