@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:flutter_app/screens/SignUpPage.dart';
 import 'package:flutter_app/screens/test_screen.dart';
-import 'package:get_it/get_it.dart';
-
+import 'models/user.dart';
 import 'services/user_service.dart';
 
 
-GetIt locator = GetIt.instance;
-
-void setupLocator() {
-  locator.registerLazySingleton(() => new UserService());
-}
 
 void main() {
-  setupLocator();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  User usr = User("", "hi@gmail.com", "stuff", "119929292", "9292", {},{});
   @override
   Widget build(BuildContext context) {
-    var userSrv = locator<UserService>();
-    print('Getting user....');
-    var user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
-    print(user);
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -44,7 +35,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUpPage(),
+      home: ProfilePage(user: usr,),
       debugShowCheckedModeBanner: false,
     );
   }

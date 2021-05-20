@@ -12,12 +12,12 @@ class RequestListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var userSrv = locator<UserService>();
+    // var userSrv = locator<UserService>();
     //TODO change this
-    Future<User> user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
+    // Future<User> user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
 
     return FutureBuilder(
-      future: user,
+      // future: user,
       builder: (context, snapshot) {
         print(snapshot);
         if (snapshot.hasData) {
