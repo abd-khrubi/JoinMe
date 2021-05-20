@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/HomePage.dart';
 import 'package:flutter_app/SignUpPage.dart';
 import 'package:flutter_app/models/activity.dart';
-import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/models/app_user.dart';
+import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
+
 import 'package:flutter_app/utils/firebase_utils.dart';
+
 
 import 'HomePage.dart';
 import 'SignUpPage.dart';
@@ -14,6 +18,7 @@ import 'SignUpPage.dart';
 class SignInPage extends StatelessWidget {
   AppUser usr = new AppUser('1', 'hussam@gmail.com', 'hussamsal', '421', 'dsa',
       {Campus.har}, {Activity.chess});
+
 
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
@@ -42,18 +47,11 @@ class SignInPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text("Join me"),
-          centerTitle: true,
-          backgroundColor: Colors.deepOrange,
-          elevation: 20,
-        ),
         body: ListView(
           children: [
-            Image.network
-                //TODO : Crop the pic
-                (
-              "https://i.pinimg.com/originals/a4/08/e4/a408e44aae1357ac9b73a2b08935f62a.jpg",
+            Image.asset(
+              "assets/images/signIn.jpg",
+
               fit: BoxFit.contain,
             ),
 
@@ -105,22 +103,34 @@ class SignInPage extends StatelessWidget {
                   color: Colors.blue,
                   child: Text('Login'),
                   onPressed: () {
-                    _login(context);
+                    //TODO : return data from firebase
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => HomePage(usr)));
                   },
                 )),
 
+            SignInButton(
+              Buttons.Google,
+              text: "Sign in with Google",
+              onPressed: () {},
+            ),
+            SignInButton(
+                Buttons.Facebook,
+                onPressed: () {},
+                text: "Sign in with Facebook"),
             ///Ending with signIn button
             ///Start with Sign up
             Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.only(top: 80, left: 100),
               child: Row(
                 children: <Widget>[
-                  Text('Does not have account?'),
+                  Text("Don't have an account?"),
                   FlatButton(
                     textColor: Colors.blue,
                     child: Text(
                       'Sign up',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 15),
+
                     ),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
