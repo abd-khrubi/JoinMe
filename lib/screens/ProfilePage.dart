@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/HomePage.dart';
 import '../models/campus.dart';
 import '../models/activity.dart';
@@ -50,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
 
-      ),
+
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
@@ -63,12 +63,12 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           ListTile(
             contentPadding: EdgeInsets.only(left: 30),
-            title: Text(widget.user.username),
+            title: Text(widget.user.username!),
             leading: Icon(Icons.person),
           ),
           ListTile(
             contentPadding: EdgeInsets.only(left: 30),
-            title: Text(widget.user.email),
+            title: Text(widget.user.email!),
             leading: Icon(Icons.email),
           ),
           ListTile(
