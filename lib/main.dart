@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/test_screen.dart';
+import 'package:get_it/get_it.dart';
+
+import 'services/user_service.dart';
+
+
+GetIt locator = GetIt.instance;
+
+void setupLocator() {
+  locator.registerLazySingleton(() => new UserService());
+}
 
 void main() {
+  setupLocator();
   runApp(MyApp());
 }
 
@@ -9,6 +20,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var userSrv = locator<UserService>();
+    print('Getting user....');
+    var user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
+    print(user);
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
