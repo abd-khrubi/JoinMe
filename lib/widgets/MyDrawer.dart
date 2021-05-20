@@ -10,7 +10,7 @@ import 'package:flutter_app/screens/ProfilePage.dart';
 
 
 class MyDrawer extends StatelessWidget{
-  final User user;
+  final AppUser user;
 
 
   MyDrawer(this.user);

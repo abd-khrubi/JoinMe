@@ -14,7 +14,7 @@ class RequestListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var userSrv = locator<UserService>();
     //TODO change this
-    Future<User> user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
+    Future<AppUser> user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
 
     return FutureBuilder(
       future: user,
@@ -51,7 +51,7 @@ class RequestListItem extends StatelessWidget {
                         children: [
                           // Text("heello"),
                           Text(
-                            '${(snapshot.data! as User).username}',
+                            '${(snapshot.data! as AppUser).username}',
                             style: TextStyle(fontSize: 26),
                           ),
                           Text(

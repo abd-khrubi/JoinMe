@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/user.dart';
 
 class ProfilePage extends StatefulWidget {
-  final User user;
+  final AppUser user;
 
   const ProfilePage({Key? key, required this.user}) : super(key: key);
 

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     var user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
     print(user);
 
-    var usr = new User('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
+    var usr = new AppUser('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
         '', {Campus.givat, Campus.har}, {Activity.basketball});
     // saveUser(usr).then((value) => {
     //   print('Done saving user')

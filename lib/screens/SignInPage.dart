@@ -12,7 +12,7 @@ import 'SignUpPage.dart';
 
 class SignInPage extends StatelessWidget{
 
-  User usr= new User('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
+  AppUser usr= new AppUser('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
 
   @override
   Widget build(BuildContext context) {

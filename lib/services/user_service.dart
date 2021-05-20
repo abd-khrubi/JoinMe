@@ -4,37 +4,38 @@ import 'package:flutter_app/models/user.dart';
 class UserService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final String _collectionName = 'users';
-  late CollectionReference<User> _ref;
+  late CollectionReference<AppUser> _ref;
 
-  // Map<String, User> cache;
-  late User _cachedUser;
+  Map<String, AppUser> _cache = <String, AppUser>{};
+  String? currentUserUid;
 
   UserService() {
     _ref = _db.collection(_collectionName).withConverter(
-        fromFirestore: (snapshots, _) => User.fromJson(snapshots.data()!),
+        fromFirestore: (snapshots, _) => AppUser.fromJson(snapshots.data()!),
         toFirestore: (user, _) => user.toJson());
-    // _ref = _db.collection(_collectionName);
   }
 
-  getCachedUser() {
-    return _cachedUser;
+  AppUser getCachedUser(String uid) {
+    return _cache[uid]!;
   }
 
-  Future<User> getUser(String uid) async {
-    // CollectionReference _ref = _db.collection('users');
-    CollectionReference _ref = _db.collection(_collectionName)
-    .withConverter(
-        fromFirestore: (snapshots, _) => User.fromJson(snapshots.data()!),
-        toFirestore: (user, _) => (user as User).toJson());
+  AppUser getCurrentUser() {
+    return _cache[currentUserUid]!;
+  }
 
+  Future<AppUser> getUser(String uid) async {
     return _ref.doc(uid).get().then((snapshot) {
       if (snapshot.exists) {
-        User usr = snapshot.data() as User;
+        AppUser usr = snapshot.data() as AppUser;
         return usr;
       } else {
         throw FuckYouException();
       }
     });
+  }
+
+  Future<AppUser> saveUser(AppUser user) async {
+    return _ref.doc(user.uid).set(user).then((value) => user);
   }
 }
 

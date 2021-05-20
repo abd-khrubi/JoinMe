@@ -6,7 +6,7 @@ import 'package:flutter_app/screens/requests_screen.dart';
 import 'package:flutter_app/widgets/MyDrawer.dart';
 
 class HomePage extends StatelessWidget {
-  User usr;
+  AppUser usr;
 
   HomePage(this.usr);
 
