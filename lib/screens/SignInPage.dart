@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/HomePage.dart';
@@ -8,6 +9,9 @@ import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 
+import 'package:flutter_app/utils/firebase_utils.dart';
+
+
 import 'HomePage.dart';
 import 'SignUpPage.dart';
 
@@ -15,7 +19,27 @@ class SignInPage extends StatelessWidget {
   AppUser usr = new AppUser('1', 'hussam@gmail.com', 'hussamsal', '421', 'dsa',
       {Campus.har}, {Activity.chess});
 
-  doSomething() {}
+
+  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
+
+
+  _login(BuildContext context) {
+    // FirebaseAuth.instance.signOut().then((value) {
+    //   print('done');
+    // }).catchError((onError) {
+    //   print(onError);
+    // });
+    if (_emailController.text != "" && _passwordController.text != "") {
+      login(_emailController.text, _passwordController.text).then((value) {
+        //Navigation
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => HomePage(usr)));
+      }).catchError((error) {
+        print(error);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +51,7 @@ class SignInPage extends StatelessWidget {
           children: [
             Image.asset(
               "assets/images/signIn.jpg",
+
               fit: BoxFit.contain,
             ),
 
@@ -37,6 +62,7 @@ class SignInPage extends StatelessWidget {
               padding: EdgeInsets.all(30),
               alignment: Alignment.center,
               child: TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                     fillColor: Colors.white,
                     floatingLabelBehavior: FloatingLabelBehavior.auto,
@@ -55,6 +81,7 @@ class SignInPage extends StatelessWidget {
               padding: EdgeInsets.all(10),
               alignment: Alignment.center,
               child: TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
                   fillColor: Colors.white,
@@ -91,7 +118,6 @@ class SignInPage extends StatelessWidget {
                 Buttons.Facebook,
                 onPressed: () {},
                 text: "Sign in with Facebook"),
-
             ///Ending with signIn button
             ///Start with Sign up
             Container(
@@ -104,6 +130,7 @@ class SignInPage extends StatelessWidget {
                     child: Text(
                       'Sign up',
                       style: TextStyle(fontSize: 15),
+
                     ),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(

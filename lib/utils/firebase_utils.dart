@@ -19,7 +19,7 @@ Future<AppUser> saveUser(AppUser user) async {
 
 Future<AppUser?> login(String email, String pass) async {
   if (FirebaseAuth.instance.currentUser != null) {
-    return _userService.getCurrentUser();
+    return getCurrentUser();
   }
   try {
     return FirebaseAuth.instance
@@ -37,7 +37,9 @@ AppUser getCurrentUser() {
   if (_userService.currentUserUid != null) {
     return _userService.getCurrentUser();
   } else if (FirebaseAuth.instance.currentUser != null) {
-    return _userService.getCachedUser(FirebaseAuth.instance.currentUser!.uid);
+    final User? currUser = FirebaseAuth.instance.currentUser;
+    final uid = currUser!.uid;
+    return _userService.getCachedUser(uid);
   }
   throw Exception('No User session');
 }

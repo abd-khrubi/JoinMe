@@ -7,6 +7,7 @@ import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/screens/ProfilePage.dart';
+import 'package:flutter_app/utils/firebase_utils.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -26,6 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
       {Campus.har},
       {Activity.chess});
 
+
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -33,12 +35,19 @@ class _SignUpPageState extends State<SignUpPage> {
       'assets/images/blank_avatar.png');
   bool hasPicked = false;
   final picker = ImagePicker();
+  var picked = false;
 
-  signUp() {
-    Text("Sign Up");
+  signUp(BuildContext context) {
     if (userController.text != "" &&
         emailController.text != "" &&
-        passwordController.text != "") {}
+        passwordController.text != "") {
+      register(userController.text, emailController.text, passwordController.text).then((user) {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ProfilePage(user!)));
+      }).catchError((error) {
+        print(error);
+      });
+    }
   }
 
   Future getImage() async {
@@ -81,6 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   .asset(
                                   'assets/images/blank_avatar.png')
                                   .image),
+
                         ),
                         Text("Choose a profile picture",
                             style: TextStyle(fontSize: 14.0)),
@@ -132,6 +142,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             signUp();
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => ProfilePage( usr)));
+
                           },
                           child: Text(''),
                         )
