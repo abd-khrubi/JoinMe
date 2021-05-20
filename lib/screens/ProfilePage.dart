@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/HomePage.dart';
 import '../models/campus.dart';
@@ -9,19 +8,19 @@ import '../models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/models/app_user.dart';
 
+import 'package:flutter_app/models/campus.dart';
 
 class ProfilePage extends StatefulWidget {
   final AppUser user;
 
   const ProfilePage(this.user);
 
-
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  List<String> campusList = ["Givat Ram", "MT.Scopus", "Ein Karem", "Rehovot"];
+  List<String> campusList = ["MT.Scopus","Givat Ram", "Ein Karem", "Rehovot"];
   List<bool> tapped = [false, false, false, false];
   List<bool> tappedSport = [
     false,
@@ -39,18 +38,15 @@ class _ProfilePageState extends State<ProfilePage> {
   bool prefersRehovot = false;
   bool prefersEinKarem = false;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Profile Page ${widget.user.username}",
-            style: TextStyle(fontSize: 18.0),
-          ),
+      appBar: AppBar(
+        title: Text(
+          "Profile Page ${widget.user.username}",
+          style: TextStyle(fontSize: 18.0),
         ),
-
-
+      ),
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
@@ -86,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   label: Text(campusList[index]),
                   labelStyle: TextStyle(color: Colors.white),
                   selectedColor: Colors.blue,
-                  selected: tapped[index],
+                  selected: widget.user.preferredCampuses.contains(Campus.values[index]),
                   onSelected: (bool selected) {
                     setState(() {
                       tapped[index] = !tapped[index];
@@ -125,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Text(activityToString(Activity.values[index]))),
                   labelStyle: TextStyle(color: Colors.white),
                   selectedColor: Colors.blue,
-                  selected: tappedSport[index],
+                  selected: widget.user.favoriteSports.contains(Activity.values[index]),
                   avatar: CircleAvatar(
                     backgroundImage:
                         Image.asset(activityImagePath(Activity.values[index]))
@@ -136,6 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       tappedSport[index] = !tappedSport[index];
                       if (tappedSport[index]) {
                         widget.user.favoriteSports.add(Activity.values[index]);
+                        print(widget.user.preferredCampuses);
                       } else {
                         widget.user.favoriteSports
                             .remove(Activity.values[index]);
@@ -149,17 +146,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisCount: 3, childAspectRatio: 2.5),
           ),
           IconButton(
-              alignment: Alignment.bottomCenter,
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomePage(widget.user)));
-              },
-              icon: Icon(Icons.home_outlined),iconSize: 35.0,)
+            alignment: Alignment.bottomCenter,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomePage(widget.user)));
+            },
+            icon: Icon(Icons.home_outlined),
+            iconSize: 35.0,
+          )
         ],
       ),
     );
-
   }
 }
