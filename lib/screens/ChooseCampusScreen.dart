@@ -38,23 +38,35 @@ class ChooseCampusScreen extends StatelessWidget {
   }
 
   Widget _campusList() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: campusList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: const EdgeInsets.all(20.0),
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.black),
-                  enableFeedback: true,
-                ),
-                onPressed: () =>
-                    {campusButtonPressed(context, campusList[index])},
-                child: Text(campusList[index])),
-          );
-        });
+    return GridView.builder(
+      padding: const EdgeInsets.all(8),
+      itemCount: campusList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          margin: const EdgeInsets.all(20.0),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              shadowColor: MaterialStateProperty.all<Color>(Colors.black),
+              elevation: MaterialStateProperty.all(10.0),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0),
+              )),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              enableFeedback: true,
+            ),
+            onPressed: () => {campusButtonPressed(context, campusList[index])},
+            child: Text(
+              campusList[index],
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        );
+      },
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, childAspectRatio: 1),
+    );
   }
 
   @override
