@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
       ),
 
       // home: ChoosePathScreen(Activity.running, Campus.rahovot),]
-      home: SignInPage(),
+      home: ChoosePathScreen(Activity.running, Campus.ein_karem),
       debugShowCheckedModeBanner: false,
     );
   }
