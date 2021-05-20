@@ -51,7 +51,7 @@ class RequestListItem extends StatelessWidget {
                         children: [
                           // Text("heello"),
                           Text(
-                            '${snapshot.data.username}',
+                            '${(snapshot.data! as User).username}',
                             style: TextStyle(fontSize: 26),
                           ),
                           Text(

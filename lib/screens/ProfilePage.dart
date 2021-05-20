@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/models/user.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -7,16 +6,19 @@ class ProfilePage extends StatefulWidget {
 
   const ProfilePage({Key key, this.user}) : super(key: key);
 
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
   List<String> campusList = ["Givat Ram", "MT.Scopus", "Ein Karem", "Rehovot"];
+
   bool prefersGivatRam = false;
   bool prefersMountScopus = false;
   bool prefersRehovot = false;
   bool prefersEinKarem = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   margin: const EdgeInsets.only(left: 20),
                   child: Text("Preferred campuses:",
                       style: TextStyle(fontSize: 18))),
+
               Container(
                   padding: EdgeInsets.only(left: 25),
                   child: Wrap(
@@ -138,6 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       )
                     ],
                   ))
+
             ],
           ),
         )));

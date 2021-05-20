@@ -2,12 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/HomePage.dart';
 import 'package:flutter_app/SignUpPage.dart';
+import 'package:flutter_app/models/activity.dart';
+import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/models/user.dart';
 
 import 'HomePage.dart';
 import 'SignUpPage.dart';
 
 
 class SignInPage extends StatelessWidget{
+
+  User usr= new User('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -73,8 +79,8 @@ class SignInPage extends StatelessWidget{
                   color: Colors.blue,
                   child: Text('Login'),
                   onPressed: () {
-
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+            //TODO : return data from firebase
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(usr)));
 
 
                   },

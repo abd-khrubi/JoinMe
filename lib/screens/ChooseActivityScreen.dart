@@ -34,7 +34,7 @@ class ChooseActivityScreen extends StatelessWidget {
 
   Widget _activityList() {
     return GridView.builder(
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.symmetric(vertical: 15.0),
         itemCount: activities.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
@@ -47,19 +47,20 @@ class ChooseActivityScreen extends StatelessWidget {
                     child: Image.asset(
                       images[index],
                       height: 100,
-                      width: 50,
+                      width: 100,
                       scale: 10,
                     ),
                     style: ButtonStyle(
+                      shadowColor: MaterialStateProperty.all<Color>(Colors.black),
+                      elevation: MaterialStateProperty.all(10.0),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.black))),
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                      ),
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.blue),
-                      fixedSize: MaterialStateProperty.all<Size>(
-                          Size.fromWidth(200.0)),
-                      shadowColor: MaterialStateProperty.all<Color>(Colors.red),
+
                     ),
                   ),
                 ),
