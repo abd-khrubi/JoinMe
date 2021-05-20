@@ -28,6 +28,7 @@ class AppUser {
   // User(this.uid, this.email, this.username, this.preferredCampuses,
   //     this.favoriteSports);
 
+  @Deprecated('use AppUser.fromJson')
   static AppUser? fromDocument(String uid, DocumentSnapshot<AppUser> doc) {
     log("Got user: " + doc.data.toString());
     return null;
@@ -36,6 +37,7 @@ class AppUser {
     //     );
   } // TODO read user from document data
 
+  @Deprecated('use toJson')
   Map<String, dynamic> toMap() {
     return {
       'email': this.email,
