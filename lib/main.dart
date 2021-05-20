@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/SignUpPage.dart';
 import 'package:flutter_app/screens/test_screen.dart';
 
 void main() {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: TestScreen(),
+      home: SignUpPage(),
       debugShowCheckedModeBanner: false,
     );
   }

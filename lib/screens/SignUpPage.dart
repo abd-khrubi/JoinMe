@@ -1,11 +1,36 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/user.dart';
+import 'package:image_picker/image_picker.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key key}) : super(key: key);
+
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController userController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  File _image;
+  final picker = ImagePicker();
+
+  signUp() {
+    if(userController.text != "" && emailController.text != ""
+        && passwordController.text != "") {
+      User user = new User("", emailController.text, userController.text, {}, {});
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
               title: Text("Create an account"),
@@ -17,7 +42,13 @@ class SignUpPage extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        CircleAvatar(radius: 50.0),
+                        GestureDetector(
+                          onTap: (){
+                            //todo: get image from gallery
+                          },
+                        child:CircleAvatar(radius: 50.0,),
+
+                        ),
                         Text("Choose a profile picture",
                             style: TextStyle(fontSize: 16.0)),
                         SizedBox(height: 40),
@@ -31,7 +62,8 @@ class SignUpPage extends StatelessWidget {
                         TextField(
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: 'User Name')),
+                                hintText: 'User Name'),
+                            controller: userController),
                         SizedBox(height: 20),
                         Row(
                           children: [
@@ -41,12 +73,11 @@ class SignUpPage extends StatelessWidget {
                           ],
                         ),
                         TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Email"
-                          ),
-                        ),
-                        SizedBox(height:20),
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Email"),
+                            controller: emailController),
+                        SizedBox(height: 20),
                         Row(
                           children: [
                             Text("Enter Password",
@@ -55,16 +86,25 @@ class SignUpPage extends StatelessWidget {
                           ],
                         ),
                         TextField(
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'Password'),
-                            enableSuggestions: false,
-                            autocorrect: false,
-                            obscureText: true),
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Password'),
+                          enableSuggestions: false,
+                          autocorrect: false,
+                          obscureText: true,
+                          controller: passwordController,
+                        ),
+                        ElevatedButton(
+                            onPressed: signUp(), child: Text("Sign Up"))
                       ],
                     )))));
     //todo: profile picture: empty avatar + clickable
     //todo: button sends data to database.
     //todo: optional sign in with google/fb
+    //todo: listview to elevate shit
   }
 }
+
+
+
+

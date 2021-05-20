@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -8,7 +9,9 @@ class TestScreen extends StatelessWidget {
   Future _pressedButton() async {
     CollectionReference testCollection = firestore.collection('test');
 
-    var username = (_nameTextFieldController.text != "") ? _nameTextFieldController.text : "hello";
+    var username = (_nameTextFieldController.text != "")
+        ? _nameTextFieldController.text
+        : "hello";
 
     await testCollection.document(username).setData({
       'Hello': 'This is a test',
@@ -30,6 +33,7 @@ class TestScreen extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
+
             children: [
               Text(
                 "Helloooo!",
