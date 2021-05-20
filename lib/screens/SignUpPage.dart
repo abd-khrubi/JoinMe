@@ -9,7 +9,7 @@ import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  const SignUpPage();
 
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -22,7 +22,8 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late File _image;
+  late File _image = File('C:\Users\Hussam Salamh\AndroidStudioProjects\miniature-invention\assets\images\blank_avatar.png');
+  bool hasPicked = false;
   final picker = ImagePicker();
 
   signUp() {
@@ -36,6 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
+        hasPicked = true;
         _image = File(pickedFile.path);
       }
     });
@@ -61,11 +63,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             getImage();
                           },
                           child: CircleAvatar(
-                            radius: 50.0, backgroundImage:  (_image != null) ? Image.file(_image).image : Image.asset( 'assets/images/blank_avatar.png').image),
+                            radius: 50.0,
+                            backgroundImage:  (hasPicked) ? Image.file(_image).image : Image.asset( 'assets/images/blank_avatar.png').image),
 
                           ),
                         Text("Choose a profile picture",
-                            style: TextStyle(fontSize: 16.0)),
+                            style: TextStyle(fontSize: 14.0)),
                         SizedBox(height: 40),
                         Row(
                           children: [
