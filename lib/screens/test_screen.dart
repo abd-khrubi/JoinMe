@@ -54,6 +54,7 @@ class TestScreen extends StatelessWidget {
                 controller: _nameTextFieldController,
               ),
               ElevatedButton(
+                onPressed: () {  },
                 child: Text("Say hi to firebase!"),
                 // onPressed: () => Navigator.of(context)
                 //     .push(MaterialPageRoute(builder: (_) => GoogleMapScreen())),

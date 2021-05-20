@@ -15,10 +15,10 @@ User _$UserFromJson(Map<String, dynamic> json) {
     json['imageUid'] as String,
     (json['preferredCampuses'] as List<dynamic>)
         .map((e) => _$enumDecode(_$CampusEnumMap, e))
-        .toList(),
+        .toSet(),
     (json['favoriteSports'] as List<dynamic>)
         .map((e) => _$enumDecode(_$ActivityEnumMap, e))
-        .toList(),
+        .toSet(),
   );
 }
 

@@ -10,7 +10,7 @@ import 'package:flutter_app/screens/ProfilePage.dart';
 
 
 class MyDrawer extends StatelessWidget{
-  User user;
+  final User user;
 
 
   MyDrawer(this.user);
@@ -39,7 +39,7 @@ class MyDrawer extends StatelessWidget{
             title: Text("Profile"),
             leading: Icon(Icons.person),
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(user)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(user: user)));
 
             },
           ),

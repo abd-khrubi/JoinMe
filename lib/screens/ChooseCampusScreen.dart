@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/screens/ChooseActivityScreen.dart';
 
 class ChooseCampusScreen extends StatelessWidget {
-  Firestore firestore = Firestore.instance;
-  var campusList = ["Givat Ram", "MT.Scopus", "Ein Karem", "Rehovot"];
+  final List<String> campusList = [
+    "Givat Ram",
+    "MT.Scopus",
+    "Ein Karem",
+    "Rehovot"
+  ];
 
   void campusButtonPressed(BuildContext context, String campus) {
-    Campus currentCampus;
+    Campus currentCampus = Campus.givat;
     switch (campus) {
       case "Givat Ram":
         {
@@ -34,7 +37,6 @@ class ChooseCampusScreen extends StatelessWidget {
         context,
         MaterialPageRoute(
             builder: (context) => ChooseActivityScreen(currentCampus)));
-    print(currentCampus);
   }
 
   Widget _campusList() {

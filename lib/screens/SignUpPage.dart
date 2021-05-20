@@ -9,7 +9,7 @@ import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key key}) : super(key: key);
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -22,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  File _image;
+  late File _image;
   final picker = ImagePicker();
 
   signUp() {
@@ -112,8 +112,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         ElevatedButton(
                             onPressed: (){
                                signUp();
-                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(usr)));
-                            },
+                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(user: usr)));
+                            }, child: Text(''),
                         )
                       ],
                     )))));
