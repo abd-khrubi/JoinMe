@@ -139,9 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            signUp();
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ProfilePage( usr)));
+                            signUp(context);
 
                           },
                           child: Text(''),
