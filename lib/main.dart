@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/activity.dart';
+import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/screens/SignUpPage.dart';
 import 'package:flutter_app/screens/test_screen.dart';
+import 'package:flutter_app/utils/firebase_utils.dart';
 import 'package:get_it/get_it.dart';
 
+import 'models/user.dart';
 import 'services/user_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
 GetIt locator = GetIt.instance;
@@ -12,7 +17,10 @@ void setupLocator() {
   locator.registerLazySingleton(() => new UserService());
 }
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   setupLocator();
   runApp(MyApp());
 }
@@ -25,6 +33,21 @@ class MyApp extends StatelessWidget {
     print('Getting user....');
     var user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
     print(user);
+
+    var usr = new User(
+        'hiiiiii',
+        'whaaat@gmail.com',
+        'nammmmmme',
+        '0002145',
+        '',
+        [Campus.givat, Campus.har],
+        [Activity.basketball]
+    );
+    // saveUser(usr).then((value) => {
+    //   print('Done saving user')
+    // });
+
+
 
     return MaterialApp(
       title: 'Flutter Demo',
