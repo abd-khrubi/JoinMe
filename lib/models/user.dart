@@ -8,7 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user.g.dart';
 
 @JsonSerializable(nullable: true)
-class User {
+class AppUser {
   String uid;
   String email;
   String username;
@@ -18,17 +18,17 @@ class User {
   Set<Campus> preferredCampuses;
   Set<Activity> favoriteSports;
 
-  User(this.uid, this.email, this.username, this.phoneNumber, this.imageUid,
+  AppUser(this.uid, this.email, this.username, this.phoneNumber, this.imageUid,
       this.preferredCampuses, this.favoriteSports);
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory AppUser.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   // User(this.uid, this.email, this.username, this.preferredCampuses,
   //     this.favoriteSports);
 
-  static User? fromDocument(String uid, DocumentSnapshot<User> doc) {
+  static AppUser? fromDocument(String uid, DocumentSnapshot<AppUser> doc) {
     log("Got user: " + doc.data.toString());
     return null;
     // return User(uid, doc.data['email'], '', doc.data['phoneNumber'],

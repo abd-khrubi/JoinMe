@@ -17,7 +17,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
 
-  User usr= new User('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
+  AppUser usr= new AppUser('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();

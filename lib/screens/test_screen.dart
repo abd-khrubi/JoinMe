@@ -12,8 +12,6 @@ class TestScreen extends StatelessWidget {
       TextEditingController();
 
   Future _pressedButton() async {
-    var userSrc = locator<UserService>();
-    print(userSrc.getCachedUser());
 
     CollectionReference testCollection = firestore.collection('test');
 

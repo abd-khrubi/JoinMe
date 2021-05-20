@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var usr = new User('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
+    var usr = new AppUser('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
         '', {Campus.givat, Campus.har}, {Activity.basketball});
     // saveUser(usr).then((value) => {
     //   print('Done saving user')
