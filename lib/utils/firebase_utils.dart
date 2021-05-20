@@ -3,10 +3,15 @@ import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
 
 import '../main.dart';
-import '../models/user.dart';
+import '../models/app_user.dart';
 import '../services/user_service.dart';
 
 var _userService = locator<UserService>();
+
+Future<AppUser> getUserByUid(String uid)  {
+  return _userService.getUser(uid);
+
+}
 
 Future<AppUser> saveUser(AppUser user) async {
   return _userService.saveUser(user);

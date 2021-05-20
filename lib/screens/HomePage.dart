@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/ChooseCampusScreen.dart';
 import 'package:flutter_app/screens/requests_screen.dart';
 import 'package:flutter_app/widgets/MyDrawer.dart';
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Welcome '+usr.username),
+        title: new Text('Welcome '+usr.username!),
       ),
       backgroundColor: Colors.white,
 

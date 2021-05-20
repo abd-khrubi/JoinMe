@@ -4,7 +4,7 @@ import 'package:flutter_app/HomePage.dart';
 import 'package:flutter_app/SignUpPage.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 
 import 'HomePage.dart';
 import 'SignUpPage.dart';
