@@ -38,19 +38,38 @@ class ChooseActivityScreen extends StatelessWidget {
         itemCount: activities.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-              margin: const EdgeInsets.all(20.0),
-              child: ElevatedButton(
-                  onPressed: null,
-                  child: Image.asset(images[index]),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
-                    fixedSize:
-                        MaterialStateProperty.all<Size>(Size.fromWidth(200.0)),
-                  )));
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(20.0),
+                  child: ElevatedButton(
+                    onPressed: null,
+                    child: Image.asset(
+                      images[index],
+                      height: 100,
+                      width: 50,
+                      scale: 10,
+                    ),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(color: Colors.black))),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blue),
+                      fixedSize: MaterialStateProperty.all<Size>(
+                          Size.fromWidth(200.0)),
+                      shadowColor: MaterialStateProperty.all<Color>(Colors.red),
+                    ),
+                  ),
+                ),
+                Text(activities[index]),
+              ],
+            ),
+          );
         },
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1, childAspectRatio: 2));
+            crossAxisCount: 2, childAspectRatio: 1));
   }
 
   @override
