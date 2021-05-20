@@ -2,6 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/activity.dart';
+import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -12,6 +16,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  User usr= new User('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
+
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -19,6 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final picker = ImagePicker();
 
   signUp() {
+    Text("Sign Up");
     if (userController.text != "" &&
         emailController.text != "" &&
         passwordController.text != "") {}
@@ -102,7 +110,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: passwordController,
                         ),
                         ElevatedButton(
-                            onPressed: signUp(), child: Text("Sign Up"))
+                            onPressed: (){
+                               signUp();
+                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(usr)));
+                            },
+                        )
                       ],
                     )))));
     //todo: profile picture: empty avatar + clickable
