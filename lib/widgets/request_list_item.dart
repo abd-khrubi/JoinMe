@@ -5,7 +5,6 @@ import 'package:flutter_app/main.dart';
 import 'package:flutter_app/models/user.dart';
 import 'package:flutter_app/services/user_service.dart';
 
-
 class RequestListItem extends StatelessWidget {
   final Request request;
 
@@ -23,8 +22,8 @@ class RequestListItem extends StatelessWidget {
         print(snapshot);
         if (snapshot.hasData) {
           return Container(
-            padding: EdgeInsets.all(15),
-            margin: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(15, 15, 20, 15),
+            margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -38,28 +37,68 @@ class RequestListItem extends StatelessWidget {
                 ),
               ],
             ),
-
-            child: Row(
+            child: Column(
               children: [
-                CircleAvatar(radius: 30,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    // Text("heello"),
-                    Text('${snapshot.data.username}'),
-                    Text('${activityToString(request.activity)}'),
+                    CircleAvatar(
+                      radius: 30,
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Text("heello"),
+                          Text(
+                            '${snapshot.data.username}',
+                            style: TextStyle(fontSize: 26),
+                          ),
+                          Text(
+                            '${activityToString(request.activity)}',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Spacer(),
+                    Image.asset(
+                      activityImagePath(request.activity),
+                      height: 30,
+                    ),
                   ],
                 ),
-                // Image.asset("assets/images/basketball.png"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.check,
+                        size: 40,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(width: 20,),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.clear,
+                        size: 40,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           );
         } else {
           return Text("hello");
         }
-
       },
-
     );
   }
 }

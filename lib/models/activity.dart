@@ -32,3 +32,31 @@ String activityToString(Activity activity) {
 
   return "";
 }
+
+String activityImagePath(Activity activity) {
+  String result = 'assets/images/';
+  switch (activity) {
+    case Activity.basketball:
+      {
+        result += 'basketball.png';
+      }
+      break;
+
+    case Activity.chess:
+      {
+        result += 'chess-pieces.png';
+      }
+      break;
+    case Activity.football:
+      {
+        result += 'football.png';
+      }
+      break;
+    case Activity.running:
+      {
+        result += 'shoes.png';
+      }
+      break;
+  }
+  return result;
+}
