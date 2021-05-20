@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
-import 'package:flutter_app/models/app_user.dart';
+import 'package:flutter_app/models/user.dart';
 import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,13 +16,20 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
-  AppUser usr= new AppUser('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
+  User usr = new User(
+      '1',
+      'hussam@gmail.com',
+      'hussamsal',
+      '421',
+      'dsa',
+      {Campus.har},
+      {Activity.chess});
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late File _image = File('C:\Users\Hussam Salamh\AndroidStudioProjects\miniature-invention\assets\images\blank_avatar.png');
+  late File _image = File(
+      'C:\Users\Hussam Salamh\AndroidStudioProjects\miniature-invention\assets\images\blank_avatar.png');
   bool hasPicked = false;
   final picker = ImagePicker();
 
@@ -54,19 +61,26 @@ class _SignUpPageState extends State<SignUpPage> {
               backgroundColor: Colors.deepOrange,
             ),
             body: Center(
-                child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
+                child: ListView(
+                  padding: EdgeInsets.all(10),
+                  children: [
+                    Column(
                       children: [
                         GestureDetector(
                           onTap: () {
                             getImage();
                           },
                           child: CircleAvatar(
-                            radius: 50.0,
-                            backgroundImage:  (hasPicked) ? Image.file(_image).image : Image.asset( 'assets/images/blank_avatar.png').image),
-
-                          ),
+                              radius: 50.0,
+                              backgroundImage: (hasPicked)
+                                  ? Image
+                                  .file(_image)
+                                  .image
+                                  : Image
+                                  .asset(
+                                  'assets/images/blank_avatar.png')
+                                  .image),
+                        ),
                         Text("Choose a profile picture",
                             style: TextStyle(fontSize: 14.0)),
                         SizedBox(height: 40),
@@ -113,13 +127,17 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: passwordController,
                         ),
                         ElevatedButton(
-                            onPressed: (){
-                               signUp();
-                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(usr)));
-                            }, child: Text(''),
+                          onPressed: () {
+                            signUp();
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ProfilePage(user: usr)));
+                          },
+                          child: Text(''),
                         )
                       ],
-                    )))));
+                    )
+                  ],
+                ))));
     //todo: profile picture: empty avatar + clickable
     //todo: button sends data to database.
     //todo: optional sign in with google/fb
