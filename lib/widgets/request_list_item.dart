@@ -15,7 +15,7 @@ class RequestListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var srv = locator<UserService>();
     return FutureBuilder(
-      future: srv.getUser(request.uid),
+      future: srv.getUser(request.uid!),
       builder: (context, snapshot) {
         print(snapshot);
         if (snapshot.hasData) {
@@ -54,7 +54,7 @@ class RequestListItem extends StatelessWidget {
                             style: TextStyle(fontSize: 26),
                           ),
                           Text(
-                            '${activityToString(request.activity)}',
+                            '${activityToString(request.activity!)}',
                             style: TextStyle(
                               fontSize: 20,
                             ),
@@ -64,7 +64,7 @@ class RequestListItem extends StatelessWidget {
                     ),
                     Spacer(),
                     Image.asset(
-                      activityImagePath(request.activity),
+                      activityImagePath(request.activity!),
                       height: 30,
                     ),
                   ],
