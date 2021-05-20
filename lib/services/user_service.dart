@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 
 class UserService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -24,13 +24,21 @@ class UserService {
   }
 
   Future<AppUser> getUser(String uid) async {
-    return _ref.doc(uid).get().then((snapshot) {
+    if (_cache.containsKey(uid)) {
+      return getCachedUser(uid);
+    }
+    // CollectionReference ref = _db.collection(_collectionName);
+    return await _ref.doc(uid).get().then((snapshot) {
       if (snapshot.exists) {
         AppUser usr = snapshot.data() as AppUser;
+        usr.uid = uid;
         return usr;
       } else {
         throw FuckYouException();
       }
+    }).catchError((e) {
+      print('$e');
+
     });
   }
 

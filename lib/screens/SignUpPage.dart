@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -112,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ElevatedButton(
                             onPressed: (){
                                signUp();
-                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(user: usr)));
+                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(usr)));
                             }, child: Text(''),
                         )
                       ],
