@@ -8,6 +8,7 @@ import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:flutter_app/screens/SignInPage.dart';
 import 'package:flutter_app/screens/choose_path_screen.dart';
 import 'package:flutter_app/screens/requests_screen.dart';
+import 'package:flutter_app/services/request_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_app/models/app_user.dart';
 
@@ -18,6 +19,7 @@ GetIt locator = GetIt.instance;
 
 void setupLocator() {
   locator.registerLazySingleton(() => new UserService());
+  locator.registerLazySingleton(() => new RequestService());
 }
 
 void main() async {
