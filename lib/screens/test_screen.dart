@@ -1,14 +1,24 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/google_map_screen.dart';
+import 'package:flutter_app/services/user_service.dart';
+
+import '../main.dart';
 
 class TestScreen extends StatelessWidget {
-  Firestore firestore = Firestore.instance;
-  TextEditingController _nameTextFieldController = TextEditingController();
+  final Firestore firestore = Firestore.instance;
+  final TextEditingController _nameTextFieldController =
+      TextEditingController();
 
   Future _pressedButton() async {
+    var userSrc = locator<UserService>();
+    print(userSrc.getCachedUser());
+
     CollectionReference testCollection = firestore.collection('test');
 
-    var username = (_nameTextFieldController.text != "") ? _nameTextFieldController.text : "hello";
+    var username = (_nameTextFieldController.text != "")
+        ? _nameTextFieldController.text
+        : "hello";
 
     await testCollection.document(username).setData({
       'Hello': 'This is a test',
@@ -43,9 +53,11 @@ class TestScreen extends StatelessWidget {
                 ),
                 controller: _nameTextFieldController,
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text("Say hi to firebase!"),
-                onPressed: _pressedButton,
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => GoogleMapScreen())),
+                // onPressed: _pressedButton,
               ),
             ],
           ),
