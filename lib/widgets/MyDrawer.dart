@@ -39,7 +39,7 @@ class MyDrawer extends StatelessWidget{
             title: Text("Profile"),
             leading: Icon(Icons.person),
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(user: user)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage(user)));
 
             },
           ),

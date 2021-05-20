@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/models/user.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_app/models/user.dart';
 class ProfilePage extends StatefulWidget {
   final User user;
 
-  const ProfilePage({Key? key, required this.user}) : super(key: key);
+  const ProfilePage(this.user);
 
 
   @override

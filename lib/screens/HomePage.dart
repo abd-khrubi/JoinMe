@@ -12,19 +12,28 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Welcome '+usr.username),
+    return Scaffold(
+      appBar: AppBar(
+        title:
+            Text('Welcome,  ' + usr.username + "\n Check your notifications:"),
+        actions:
+        [
+          IconButton(
+            icon: Icon(Icons.notifications, color: Colors.black),
+            onPressed:(){
+              //todo: open notifications screen
+            },
+          )
+        ],
       ),
       backgroundColor: Colors.white,
-
-      body: new Column(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Expanded(
-            child: Container(),
-          ),
-          new ElevatedButton(
+          Container(
+            alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.only(top:600),
+              child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               primary: Colors.deepPurpleAccent,
@@ -35,12 +44,11 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChooseCampusScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ChooseCampusScreen()));
             },
-          ),
-          
+          )),
           new ElevatedButton(
-
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               primary: Colors.deepPurpleAccent,
@@ -51,7 +59,8 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => RequestsScreen()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
           new Expanded(

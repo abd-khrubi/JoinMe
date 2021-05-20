@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/screens/HomePage.dart';
+import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:flutter_app/screens/SignInPage.dart';
 import 'package:flutter_app/screens/SignUpPage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_app/models/user.dart';
+
 
 import 'models/user.dart';
 import 'services/user_service.dart';
@@ -28,7 +32,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  User usr = User("", "hi@gmail.com", "stuff", "119929292", "9292", {},{});
   @override
   Widget build(BuildContext context) {
 
@@ -57,7 +60,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
-      home: SignInPage(),
+      home: HomePage(usr),
       debugShowCheckedModeBanner: false,
     );
   }
