@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/screens/SignInPage.dart';
@@ -19,17 +21,15 @@ void main() async {
   await Firebase.initializeApp();
 
   setupLocator();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  User usr = User("", "hi@gmail.com", "stuff", "119929292", "9292", {},{});
   @override
   Widget build(BuildContext context) {
-    var userSrv = locator<UserService>();
-    print('Getting user....');
-    var user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
-    print(user);
 
     var usr = new AppUser('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
         '', {Campus.givat, Campus.har}, {Activity.basketball});
@@ -55,6 +55,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+
       home: SignInPage(),
       debugShowCheckedModeBanner: false,
     );
