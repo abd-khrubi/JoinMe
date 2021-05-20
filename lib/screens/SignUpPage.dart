@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/user.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -20,12 +19,19 @@ class _SignUpPageState extends State<SignUpPage> {
   final picker = ImagePicker();
 
   signUp() {
-    if(userController.text != "" && emailController.text != ""
-        && passwordController.text != "") {
-      User user = new User("", emailController.text, userController.text, {}, {});
-    }
+    if (userController.text != "" &&
+        emailController.text != "" &&
+        passwordController.text != "") {}
   }
 
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +49,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Column(
                       children: [
                         GestureDetector(
-                          onTap: (){
-                            //todo: get image from gallery
+                          onTap: () {
+                            getImage();
                           },
-                        child:CircleAvatar(radius: 50.0,),
+                          child: CircleAvatar(
+                            radius: 50.0, backgroundImage:  (_image != null) ? Image.file(_image).image : Image.asset( 'assets/images/blank_avatar.png').image),
 
-                        ),
+                          ),
                         Text("Choose a profile picture",
                             style: TextStyle(fontSize: 16.0)),
                         SizedBox(height: 40),
@@ -104,7 +111,3 @@ class _SignUpPageState extends State<SignUpPage> {
     //todo: listview to elevate shit
   }
 }
-
-
-
-
