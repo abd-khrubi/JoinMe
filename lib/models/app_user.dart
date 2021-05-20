@@ -5,30 +5,30 @@ import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'user.g.dart';
+part 'app_user.g.dart';
 
 @JsonSerializable(nullable: true)
-class User {
-  String uid;
-  String email;
-  String username;
-  String phoneNumber;
-  String imageUid;
+class AppUser {
+  String? uid;
+  String? email;
+  String? username;
+  String? phoneNumber;
+  String? imageUid;
 
   Set<Campus> preferredCampuses;
   Set<Activity> favoriteSports;
 
-  User(this.uid, this.email, this.username, this.phoneNumber, this.imageUid,
+  AppUser(this.uid, this.email, this.username, this.phoneNumber, this.imageUid,
       this.preferredCampuses, this.favoriteSports);
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() => _$AppUserToJson(this);
 
   // User(this.uid, this.email, this.username, this.preferredCampuses,
   //     this.favoriteSports);
 
-  static User? fromDocument(String uid, DocumentSnapshot<User> doc) {
+  static AppUser? fromDocument(String uid, DocumentSnapshot<AppUser> doc) {
     log("Got user: " + doc.data.toString());
     return null;
     // return User(uid, doc.data['email'], '', doc.data['phoneNumber'],

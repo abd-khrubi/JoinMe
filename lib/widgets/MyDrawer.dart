@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/SignInPage.dart';
 import 'package:flutter_app/screens/ProfilePage.dart';
 
 
 class MyDrawer extends StatelessWidget{
-  final User user;
+  final AppUser user;
 
 
   MyDrawer(this.user);
@@ -21,8 +21,8 @@ class MyDrawer extends StatelessWidget{
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text(user.username),
-            accountEmail: Text(user.email),
+            accountName: Text(user.username!),
+            accountEmail: Text(user.email!),
             currentAccountPicture: CircleAvatar(
               child: Icon(Icons.person),
             ),

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/campus.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 
 class ProfilePage extends StatefulWidget {
-  final User user;
+  final AppUser user;
 
   const ProfilePage(this.user);
 
@@ -45,12 +45,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               ListTile(
                 contentPadding: EdgeInsets.only(left: 30),
-                title: Text(widget.user.username),
+                title: Text(widget.user.username!),
                 leading: Icon(Icons.person),
               ),
               ListTile(
                 contentPadding: EdgeInsets.only(left: 30),
-                title: Text(widget.user.email),
+                title: Text(widget.user.email!),
                 leading: Icon(Icons.email),
               ),
               SizedBox(height: 30),

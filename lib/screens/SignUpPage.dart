@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -17,7 +17,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
 
-  User usr= new User('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
+  AppUser usr= new AppUser('1','hussam@gmail.com','hussamsal','421','dsa',{Campus.har},{Activity.chess});
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/request.dart';
 import 'package:flutter_app/main.dart';
-import 'package:flutter_app/models/user.dart';
+import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/services/user_service.dart';
+import 'package:flutter_app/utils/firebase_utils.dart';
 
 class RequestListItem extends StatelessWidget {
   final Request request;
@@ -12,15 +13,13 @@ class RequestListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var userSrv = locator<UserService>();
-    //TODO change this
-    // Future<User> user = userSrv.getUser("lmLvoGDT3aNNQQ0LZjEh");
-
+    var srv = locator<UserService>();
     return FutureBuilder(
-      // future: user,
+      future: srv.getUser(request.uid),
       builder: (context, snapshot) {
         print(snapshot);
         if (snapshot.hasData) {
+          var user = snapshot.data as AppUser;
           return Container(
             padding: EdgeInsets.fromLTRB(15, 15, 20, 15),
             margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
@@ -51,7 +50,7 @@ class RequestListItem extends StatelessWidget {
                         children: [
                           // Text("heello"),
                           Text(
-                            '${(snapshot.data! as User).username}',
+                            '${user.username}',
                             style: TextStyle(fontSize: 26),
                           ),
                           Text(
