@@ -68,53 +68,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         backgroundColor: Colors.white,
-        // body: Column(
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //   children: <Widget>[
-        //     Container(
-        //         alignment: Alignment.bottomCenter,
-        //         padding: EdgeInsets.only(top: 600),
-        //         child: ElevatedButton(
-        //           style: ElevatedButton.styleFrom(
-        //             padding:
-        //                 EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-        //             primary: Colors.deepPurpleAccent,
-        //             shape: StadiumBorder(),
-        //           ),
-        //           child: Text(
-        //             "Play",
-        //             style: TextStyle(color: Colors.white, fontSize: 18),
-        //           ),
-        //           onPressed: () {
-        //             Navigator.of(context).push(MaterialPageRoute(
-        //                 builder: (context) => ChooseCampusScreen()));
-        //           },
-        //         )),
-        //     ListView.builder(
-        //         scrollDirection: Axis.vertical,
-        //         shrinkWrap: true,
-        //         itemCount: newList.length,
-        //         itemBuilder: (context, index) {
-        //           return RequestListItem(newList[index]);
-        //         }),
-        //     new ElevatedButton(
-        //
-        //       style: ElevatedButton.styleFrom(
-        //         padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-        //         primary: Colors.deepPurpleAccent,
-        //         shape: StadiumBorder(),
-        //       ),
-        //       child: Text(
-        //         "Notification",
-        //         style: TextStyle(color: Colors.white, fontSize: 18),
-        //       ),
-        //       onPressed: () {
-        //         Navigator.of(context).push(
-        //             MaterialPageRoute(builder: (context) => RequestsScreen()));
-        //       },
-        //     ),
-        //   ],
-        // ),
+
         body: Stack(
             children: [
               Container(
