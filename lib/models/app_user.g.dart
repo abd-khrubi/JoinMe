@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of 'app_user.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AppUser _$UserFromJson(Map<String, dynamic> json) {
+AppUser _$AppUserFromJson(Map<String, dynamic> json) {
   return AppUser(
-    json['uid'] as String,
-    json['email'] as String,
-    json['username'] as String,
-    json['phoneNumber'] as String,
-    json['imageUid'] as String,
+    json['uid'] as String?,
+    json['email'] as String?,
+    json['username'] as String?,
+    json['phoneNumber'] as String?,
+    json['imageUid'] as String?,
     (json['preferredCampuses'] as List<dynamic>)
         .map((e) => _$enumDecode(_$CampusEnumMap, e))
         .toSet(),
@@ -22,7 +22,7 @@ AppUser _$UserFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$UserToJson(AppUser instance) => <String, dynamic>{
+Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'uid': instance.uid,
       'email': instance.email,
       'username': instance.username,
