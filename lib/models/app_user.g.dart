@@ -70,6 +70,10 @@ const _$CampusEnumMap = {
 const _$ActivityEnumMap = {
   Activity.basketball: 'basketball',
   Activity.chess: 'chess',
-  Activity.football: 'football',
+  Activity.cycling: 'cycling',
+  Activity.working_out: 'working_out',
   Activity.running: 'running',
+  Activity.skipping_rope: 'skipping_rope',
+  Activity.swimming: 'swimming',
+  Activity.football: 'football',
 };

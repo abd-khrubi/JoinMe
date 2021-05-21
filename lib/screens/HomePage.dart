@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
   HomePage(this.usr);
 
   Request request = Request(
+    '1',
     "hiiiiii",
     Activity.basketball,
     Campus.givat,
@@ -22,6 +23,7 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
   );
   Request request2 = Request(
+    '2',
     "hiiiiii",
     Activity.running,
     Campus.givat,
@@ -29,6 +31,7 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
   );
   Request request3 = Request(
+    '3',
     "hiiiiii",
     Activity.chess,
     Campus.givat,
@@ -36,6 +39,7 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
   );
   Request request4 = Request(
+    '4',
     "hiiiiii",
     Activity.football,
     Campus.givat,
@@ -57,7 +61,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title:
-          Text('Welcome,  ' + usr.username! + "\n Check your notifications:"),
+          Text('Welcome, ${usr.username} \n Check your notifications:'),
           actions: [
             IconButton(
               icon: Icon(Icons.notifications, color: Colors.black),

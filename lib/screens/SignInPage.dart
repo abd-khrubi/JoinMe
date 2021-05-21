@@ -97,9 +97,6 @@ class SignInPage extends StatelessWidget {
                   color: Colors.blue,
                   child: Text('Login'),
                   onPressed: () {
-                    //TODO : return data from firebase
-                    // Navigator.of(context).push(
-                    //     MaterialPageRoute(builder: (context) => HomePage(usr)));
                     _login(context);
                   },
                 )),
