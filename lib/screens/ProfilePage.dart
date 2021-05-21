@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/screens/HomePage.dart';
+import 'package:flutter_app/utils/firebase_utils.dart';
 import '../models/campus.dart';
 import '../models/activity.dart';
 
 import 'package:flutter_app/models/campus.dart';
 import 'package:flutter_app/models/app_user.dart';
 
-
 class ProfilePage extends StatefulWidget {
   final AppUser user;
 
   const ProfilePage(this.user);
-
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -22,8 +21,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   List<String> campusList = ["Givat Ram", "MT.Scopus", "Ein Karem", "Rehovot"];
-  List<bool> tapped = [false, false, false, false];
-  List<bool> tappedSport = [
+  List<bool> chosenCampus = [false, false, false, false];
+  List<bool> chosenSport = [
     false,
     false,
     false,
@@ -39,18 +38,42 @@ class _ProfilePageState extends State<ProfilePage> {
   bool prefersRehovot = false;
   bool prefersEinKarem = false;
 
+  _continueBtn() {
+    Set<Campus> favCampus = {};
+    for (int i = 0; i < chosenCampus.length; i++) {
+      if (chosenCampus[i]) {
+        favCampus.add(stringToCampus(campusList[i]));
+      }
+    }
+
+    Set<Activity> favActivities = {};
+    for (int i = 0; i < chosenSport.length; i++) {
+      if (chosenSport[i]) {
+        favActivities.add(Activity.values[i]);
+      }
+    }
+
+    widget.user.favoriteSports = favActivities;
+    widget.user.preferredCampuses = favCampus;
+
+    saveUser(widget.user).then((value) {
+      print("done saving");
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage(value)));
+    }).catchError((error) {
+      print(error);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Profile Page ${widget.user.username}",
-            style: TextStyle(fontSize: 18.0),
-          ),
+      appBar: AppBar(
+        title: Text(
+          "Profile Page ${widget.user.username}",
+          style: TextStyle(fontSize: 18.0),
         ),
-
-
+      ),
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
@@ -86,11 +109,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   label: Text(campusList[index]),
                   labelStyle: TextStyle(color: Colors.white),
                   selectedColor: Colors.blue,
-                  selected: tapped[index],
+                  selected: chosenCampus[index],
                   onSelected: (bool selected) {
                     setState(() {
-                      tapped[index] = !tapped[index];
-                      if (tapped[index]) {
+                      chosenCampus[index] = !chosenCampus[index];
+                      if (chosenCampus[index]) {
                         widget.user.preferredCampuses
                             .add(stringToCampus(campusList[index]));
                       } else {
@@ -125,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Text(activityToString(Activity.values[index]))),
                   labelStyle: TextStyle(color: Colors.white),
                   selectedColor: Colors.blue,
-                  selected: tappedSport[index],
+                  selected: chosenSport[index],
                   avatar: CircleAvatar(
                     backgroundImage:
                         Image.asset(activityImagePath(Activity.values[index]))
@@ -133,8 +156,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   onSelected: (bool selected) {
                     setState(() {
-                      tappedSport[index] = !tappedSport[index];
-                      if (tappedSport[index]) {
+                      chosenSport[index] = !chosenSport[index];
+                      if (chosenSport[index]) {
                         widget.user.favoriteSports.add(Activity.values[index]);
                       } else {
                         widget.user.favoriteSports
@@ -149,17 +172,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisCount: 3, childAspectRatio: 2.5),
           ),
           IconButton(
-              alignment: Alignment.bottomCenter,
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomePage(widget.user)));
-              },
-              icon: Icon(Icons.home_outlined),iconSize: 35.0,)
+            alignment: Alignment.bottomCenter,
+            onPressed: () {
+              _continueBtn();
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => HomePage(widget.user)));
+            },
+            icon: Icon(Icons.home_outlined),
+            iconSize: 35.0,
+          )
         ],
       ),
     );
-
   }
 }

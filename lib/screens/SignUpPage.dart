@@ -38,16 +38,22 @@ class _SignUpPageState extends State<SignUpPage> {
   var picked = false;
 
   signUp(BuildContext context) {
-    if (userController.text != "" &&
-        emailController.text != "" &&
-        passwordController.text != "") {
-      register(userController.text, emailController.text, passwordController.text).then((user) {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ProfilePage(user!)));
-      }).catchError((error) {
-        print(error);
-      });
-    }
+    getUserByUid("OV4FtZiJZDhjMUnLoFKU6DlVNl82").then((value) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => ProfilePage(value)));
+    }).catchError((error) {
+      print(error);
+    });
+    // if (userController.text != "" &&
+    //     emailController.text != "" &&
+    //     passwordController.text != "") {
+    //   register(userController.text, emailController.text, passwordController.text).then((user) {
+    //     Navigator.of(context).push(
+    //         MaterialPageRoute(builder: (context) => ProfilePage(user!)));
+    //   }).catchError((error) {
+    //     print(error);
+    //   });
+    // }
   }
 
   Future getImage() async {
@@ -142,7 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             signUp(context);
 
                           },
-                          child: Text(''),
+                          child: Text('Sign Up'),
                         )
                       ],
                     )

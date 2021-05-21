@@ -22,11 +22,7 @@ class SignInPage extends StatelessWidget {
 
 
   _login(BuildContext context) {
-    // FirebaseAuth.instance.signOut().then((value) {
-    //   print('done');
-    // }).catchError((onError) {
-    //   print(onError);
-    // });
+
     if (_emailController.text != "" && _passwordController.text != "") {
       login(_emailController.text, _passwordController.text).then((value) {
         //Navigation
