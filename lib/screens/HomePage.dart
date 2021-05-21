@@ -9,6 +9,7 @@ import 'package:flutter_app/screens/ChooseCampusScreen.dart';
 import 'package:flutter_app/screens/requests_screen.dart';
 import 'package:flutter_app/widgets/MyDrawer.dart';
 import 'package:flutter_app/widgets/request_list_item.dart';
+import 'package:flutter_app/screens/NotificationScreen.dart';
 import 'package:flutter_app/services/request_service.dart';
 
 class HomePage extends StatelessWidget {
@@ -48,7 +49,12 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
     DateTime.now(),
   );
-
+  void homePageNotificationButton(BuildContext context, AppUser usr){
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => NotificationScreen(usr)));
+  }
   @override
   Widget build(BuildContext context) {
     List<Request> newList = [
@@ -62,13 +68,16 @@ class HomePage extends StatelessWidget {
     RequestService srvs = locator<RequestService>();
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-              'Welcome,  ' + usr.username! + "\n Check your notifications:"),
+          title: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text('Welcome,  ' +
+                  usr.username!)),
           actions: [
             IconButton(
+              tooltip: "Notifications",
               icon: Icon(Icons.notifications, color: Colors.black),
               onPressed: () {
-                //todo: open notifications screen
+                homePageNotificationButton(context,usr);
               },
             )
           ],
@@ -93,16 +102,12 @@ class HomePage extends StatelessWidget {
                 return Center(child: CircularProgressIndicator());
               },
             ),
-            // ListView.builder(
-            //   itemCount: newList.length,
-            //   itemBuilder: (context, index) {
-            //     return RequestListItem(newList[index]);
-            //   },
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
+
                   alignment: Alignment.bottomCenter,
                   padding: EdgeInsets.only(top: 600),
                   child: ElevatedButton(
