@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/campus.dart';
-import '../models/activity.dart.';
+import '../models/activity.dart';
 class ChooseActivityScreen extends StatelessWidget {
   Campus currentCampus;
 
