@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/screens/HomePage.dart';
+import 'package:flutter_app/screens/NotificationScreen.dart';
 import 'package:flutter_app/screens/ProfilePage.dart';
 import 'package:flutter_app/utils/firebase_utils.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,12 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
   var picked = false;
 
   signUp(BuildContext context) {
-    // getUserByUid("OV4FtZiJZDhjMUnLoFKU6DlVNl82").then((value) {
-    //   Navigator.of(context).push(
-    //       MaterialPageRoute(builder: (context) => ProfilePage(value)));
-    // }).catchError((error) {
-    //   print(error);
-    // });
+
     if (userController.text != "" &&
         emailController.text != "" &&
         passwordController.text != "") {
@@ -132,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       onPressed: () {
                         signUp(context);
                       },
-                      child: Text(''),
+                      child: Text('Sign up'),
                     )
                   ],
                 )

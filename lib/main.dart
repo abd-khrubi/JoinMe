@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/NotificationScreen.dart';
 import 'package:flutter_app/screens/ChooseCampusScreen.dart';
 import 'package:flutter_app/screens/maps/running_map_har.dart';
 import 'package:flutter_app/models/activity.dart';

@@ -12,10 +12,16 @@ import 'package:flutter_app/widgets/request_list_item.dart';
 import 'package:flutter_app/screens/NotificationScreen.dart';
 import 'package:flutter_app/services/request_service.dart';
 
-class HomePage extends StatelessWidget {
+
+class HomePage extends StatefulWidget {
   AppUser usr;
 
   HomePage(this.usr);
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
 
   Request request = Request(
     '1',
@@ -49,12 +55,13 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
     DateTime.now(),
   );
-  void homePageNotificationButton(BuildContext context, AppUser usr){
+
+  void homePageNotificationButton(BuildContext context, AppUser usr) {
+    //TODO to notofication
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => NotificationScreen(usr)));
+        context, MaterialPageRoute(builder: (context) => NotificationScreen(usr)));
   }
+
   @override
   Widget build(BuildContext context) {
     List<Request> newList = [
@@ -69,17 +76,20 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text('Welcome,  ' +
-                  usr.username!)),
+              fit: BoxFit.fitWidth, child: Text('Welcome,  ' + widget.usr.username!)),
           actions: [
             IconButton(
               tooltip: "Notifications",
               icon: Icon(Icons.notifications, color: Colors.black),
               onPressed: () {
-                homePageNotificationButton(context,usr);
+                homePageNotificationButton(context, widget.usr);
               },
-            )
+            ),
+            IconButton(onPressed: () {
+              setState(() {
+
+              });
+            }, icon: Icon(Icons.refresh, color: Colors.black,))
           ],
         ),
         backgroundColor: Colors.white,
@@ -92,10 +102,15 @@ class HomePage extends StatelessWidget {
                 if (snapshot.hasData) {
                   List<Request> rList = snapshot.data as List<Request>;
                   print(rList.length);
+                  var filteredList = rList
+                      .where((element) =>
+                          (widget.usr.preferredCampuses.contains(element.campus) &&
+                              widget.usr.favoriteSports.contains(element.activity)))
+                      .toList();
                   return ListView.builder(
-                    itemCount: rList.length,
+                    itemCount: filteredList.length,
                     itemBuilder: (context, index) {
-                      return RequestListItem(rList[index]);
+                      return RequestListItem(filteredList[index]);
                     },
                   );
                 }
@@ -107,7 +122,6 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-
                   alignment: Alignment.bottomCenter,
                   padding: EdgeInsets.only(top: 600),
                   child: ElevatedButton(
@@ -129,6 +143,6 @@ class HomePage extends StatelessWidget {
             ],
           )
         ]),
-        drawer: MyDrawer(usr));
+        drawer: MyDrawer(widget.usr));
   }
 }
