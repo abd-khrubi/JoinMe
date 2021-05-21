@@ -6,10 +6,10 @@ import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/services/user_service.dart';
 import 'package:flutter_app/utils/firebase_utils.dart';
 
-class RequestListItem extends StatelessWidget {
+class requestListItemNotifications extends StatelessWidget {
   final Request request;
 
-  RequestListItem(this.request);
+  requestListItemNotifications.dart(this.request);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class RequestListItem extends StatelessWidget {
                           FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              '${user.username}'+"",
+                              '${user.username}' + "",
 
                               // style: TextStyle(fontSize: 14),
                             ),
@@ -78,27 +78,10 @@ class RequestListItem extends StatelessWidget {
                   ],
                 ),
                 Row(
-                  //TODO : CHANGE
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.check,
-                        size: 40,
-                        color: Colors.green,
-                      ),
-                    ),
                     SizedBox(
                       width: 20,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.clear,
-                        size: 40,
-                        color: Colors.red,
-                      ),
                     ),
                   ],
                 )
