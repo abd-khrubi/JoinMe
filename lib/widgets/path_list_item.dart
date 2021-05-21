@@ -86,7 +86,7 @@ class PathListItem extends StatelessWidget {
             child: IconButton(
               onPressed: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => GoogleMapScreen()));
+                    MaterialPageRoute(builder: (context) => path.widget));
               },
               icon: Icon(
                 Icons.directions,

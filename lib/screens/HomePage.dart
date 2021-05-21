@@ -118,7 +118,7 @@ class HomePage extends StatelessWidget {
                       shape: StadiumBorder(),
                     ),
                     child: Text(
-                      "Play",
+                      "Start Activity",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     onPressed: () {

@@ -60,7 +60,7 @@ class RequestListItem extends StatelessWidget {
                           FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              '${activityToString(request.activity)}',
+                              '${activityToString(request.activity!)}',
                               // style: TextStyle(fontSize: 20),
 
                             ),
@@ -72,7 +72,7 @@ class RequestListItem extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Image.asset(
-                        activityImagePath(request.activity),
+                        activityImagePath(request.activity!),
                         height: 30,
                       ),
                     ),

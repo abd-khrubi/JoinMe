@@ -12,46 +12,21 @@ import 'package:flutter_app/widgets/requestListItemNotifications.dart';
 class NotificationScreen extends StatelessWidget {
   AppUser usr;
 
+
+
+
   NotificationScreen(this.usr,);
 
-  Request request = Request(
-    "hiiiiii",
-    Activity.basketball,
-    Campus.givat,
-    DateTime.now(),
-    DateTime.now(),
-  );
-  Request request2 = Request(
-    "hiiiiii",
-    Activity.running,
-    Campus.givat,
-    DateTime.now(),
-    DateTime.now(),
-  );
-  Request request3 = Request(
-    "hiiiiii",
-    Activity.chess,
-    Campus.givat,
-    DateTime.now(),
-    DateTime.now(),
-  );
-  Request request4 = Request(
-    "hiiiiii",
-    Activity.football,
-    Campus.givat,
-    DateTime.now(),
-    DateTime.now(),
-  );
 
   @override
   Widget build(BuildContext context) {
     List<Request> newList = [
-      request,
-      request2,
-      request3,
-      request4,
-      request4,
-      request4
+      // request,
+      // request2,
+      // request3,
+      // request4,
+      // request4,
+      // request4
     ];
 
     return Scaffold(
@@ -65,7 +40,7 @@ class NotificationScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: newList.length,
               itemBuilder: (context, index) {
-                return requestListItemNotifications.dart(newList[index]);
+                return RequestListItemNotifications.dart(newList[index]);
               },
             ),
           ),

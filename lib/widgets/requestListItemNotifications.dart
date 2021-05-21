@@ -6,16 +6,16 @@ import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/services/user_service.dart';
 import 'package:flutter_app/utils/firebase_utils.dart';
 
-class requestListItemNotifications extends StatelessWidget {
+class RequestListItemNotifications extends StatelessWidget {
   final Request request;
 
-  requestListItemNotifications.dart(this.request);
+  RequestListItemNotifications.dart(this.request);
 
   @override
   Widget build(BuildContext context) {
     var srv = locator<UserService>();
     return FutureBuilder(
-      future: srv.getUser(request.uid),
+      future: srv.getUser(request.uid!),
       builder: (context, snapshot) {
         print(snapshot);
         if (snapshot.hasData) {
@@ -60,7 +60,7 @@ class requestListItemNotifications extends StatelessWidget {
                           FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              '${activityToString(request.activity)}',
+                              '${activityToString(request.activity!)}',
                               // style: TextStyle(fontSize: 20),
                             ),
                           ),
@@ -71,7 +71,7 @@ class requestListItemNotifications extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Image.asset(
-                        activityImagePath(request.activity),
+                        activityImagePath(request.activity!),
                         height: 30,
                       ),
                     ),

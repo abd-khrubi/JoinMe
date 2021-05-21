@@ -45,7 +45,7 @@ class _RunningMap1State extends State<RunningMap1> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ram - Path1'), // TODO better name
+        title: Text('Givat Ram - Path 1'), // TODO better name
         backgroundColor: Colors.green[700],
       ),
       body: GoogleMap(

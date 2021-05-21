@@ -28,7 +28,7 @@ class _ChessMapRamState extends State<ChessMapRam> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('ram - chess'), // TODO better name
+        title: Text('Givat Ram - Chess'), // TODO better name
         backgroundColor: Colors.green[700],
       ),
       body: GoogleMap(

@@ -44,9 +44,10 @@ class SignInPage extends StatelessWidget {
         body: ListView(
           children: [
             Image.asset(
-              "assets/images/signIn.jpg",
+              "assets/images/signIn.png",
+              height: 250,
 
-              fit: BoxFit.contain,
+              fit: BoxFit.fitWidth,
             ),
 
             /// This section for Email field

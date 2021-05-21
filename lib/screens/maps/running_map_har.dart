@@ -56,7 +56,7 @@ class _RunningMapHarState extends State<RunningMapHar> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Har - Path1'), // TODO better name
+        title: Text('Mount Scopus - Path1'), // TODO better name
         backgroundColor: Colors.green[700],
       ),
       body: GoogleMap(
