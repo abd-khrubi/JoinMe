@@ -3,13 +3,36 @@ import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/request.dart';
 import 'package:flutter_app/main.dart';
 import 'package:flutter_app/models/app_user.dart';
+import 'package:flutter_app/models/user_notification.dart';
+import 'package:flutter_app/services/notification_service.dart';
+import 'package:flutter_app/services/request_service.dart';
 import 'package:flutter_app/services/user_service.dart';
 import 'package:flutter_app/utils/firebase_utils.dart';
+import 'package:uuid/uuid.dart';
 
 class RequestListItem extends StatelessWidget {
   final Request request;
 
   RequestListItem(this.request);
+
+  _acceptRequest() {
+    var uuid = Uuid();
+    var uid = uuid.v1();
+    var user = getCurrentUser();
+    UserNotification userNotifocation =
+        new UserNotification(uid, request.uid, user.uid);
+
+    NotificationService srvs = locator<NotificationService>();
+    srvs.saveRequest(userNotifocation);
+
+    // RequestService reqSrvs = locator<RequestService>();
+    // reqSrvs.deleteRequest(request.uid!);
+  }
+
+  _declineRequest() {
+    // RequestService reqSrvs = locator<RequestService>();
+    // reqSrvs.deleteRequest(request.uid!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +75,7 @@ class RequestListItem extends StatelessWidget {
                           FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              '${user.username}'+"",
+                              '${user.username}' + "",
 
                               // style: TextStyle(fontSize: 14),
                             ),
@@ -60,11 +83,11 @@ class RequestListItem extends StatelessWidget {
                           FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              '${activityToString(request.activity)}',
+                              '${activityToString(request.activity!)}',
                               // style: TextStyle(fontSize: 20),
-
                             ),
                           ),
+
                         ],
                       ),
                     ),
@@ -72,7 +95,7 @@ class RequestListItem extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Image.asset(
-                        activityImagePath(request.activity),
+                        activityImagePath(request.activity!),
                         height: 30,
                       ),
                     ),
@@ -83,7 +106,9 @@ class RequestListItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _acceptRequest();
+                      },
                       icon: Icon(
                         Icons.check,
                         size: 40,
@@ -94,7 +119,9 @@ class RequestListItem extends StatelessWidget {
                       width: 20,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _declineRequest();
+                      },
                       icon: Icon(
                         Icons.clear,
                         size: 40,

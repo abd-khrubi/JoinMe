@@ -69,3 +69,16 @@ Future<AppUser?> register(String name, String email, String password) async {
 Future<void> saveRequest(Request req) {
   return _requestService.saveRequest(req);
 }
+
+Request getRequestByUid(String uid) {
+  if (uid == null || _requestService.cache[uid] == null) {
+    return Request(
+        "3da59640-b9ea-11eb-bb67-c55455c42e61",
+        "OV4FtZiJZDhjMUnLoFKU6DlVNl82",
+        Activity.basketball,
+        Campus.rahovot,
+        DateTime.now(),
+        DateTime.now());
+  }
+  return _requestService.cache[uid]!;
+}

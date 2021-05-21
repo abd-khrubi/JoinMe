@@ -6,7 +6,7 @@ class RequestService {
   final String _collectionName = 'requests';
   late CollectionReference<Request> _ref;
 
-  Map<String, Request> _cache = <String, Request>{};
+  Map<String, Request> cache = <String, Request>{};
 
   RequestService() {
     _ref = _db.collection(_collectionName).withConverter(
@@ -15,7 +15,7 @@ class RequestService {
   }
 
   List<Request> getCachedRequests() {
-    return _cache.values.toList();
+    return cache.values.toList();
   }
 
   Future<List<Request>> loadRequests() async {
@@ -23,7 +23,7 @@ class RequestService {
       value.docs.forEach((element) {
         var req = element.data();
         req.uid = element.id;
-        _cache[element.id] = req;
+        cache[element.id] = req;
       });
       return getCachedRequests();
     });
@@ -36,5 +36,9 @@ class RequestService {
 
   getRequestsStream() {
     Stream<QuerySnapshot> s = _ref.snapshots();
+  }
+
+  Future<void> deleteRequest(String uid) {
+    return _ref.doc(uid).delete();
   }
 }
