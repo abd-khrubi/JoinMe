@@ -6,6 +6,7 @@ import 'package:flutter_app/models/request.dart';
 
 class RequestsScreen extends StatelessWidget {
   Request request = Request(
+    '1',
     "hiiiiii",
     Activity.basketball,
     Campus.givat,
@@ -13,6 +14,7 @@ class RequestsScreen extends StatelessWidget {
     DateTime.now(),
   );
   Request request2 = Request(
+    '2',
     "hiiiiii",
     Activity.running,
     Campus.givat,
@@ -20,6 +22,7 @@ class RequestsScreen extends StatelessWidget {
     DateTime.now(),
   );
   Request request3 = Request(
+    '3',
     "hiiiiii",
     Activity.chess,
     Campus.givat,
@@ -27,6 +30,7 @@ class RequestsScreen extends StatelessWidget {
     DateTime.now(),
   );
   Request request4 = Request(
+    '4',
     "hiiiiii",
     Activity.football,
     Campus.givat,

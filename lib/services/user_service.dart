@@ -32,6 +32,7 @@ class UserService {
       if (snapshot.exists) {
         AppUser usr = snapshot.data() as AppUser;
         usr.uid = uid;
+        _cache[uid] = usr;
         return usr;
       } else {
         throw FuckYouException();

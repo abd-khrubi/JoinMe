@@ -1,37 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_user.dart';
+part of 'request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AppUser _$AppUserFromJson(Map<String, dynamic> json) {
-  return AppUser(
+Request _$RequestFromJson(Map<String, dynamic> json) {
+  return Request(
     json['uid'] as String?,
-    json['email'] as String?,
-    json['username'] as String?,
-    json['phoneNumber'] as String?,
-    json['imageUid'] as String?,
-    (json['preferredCampuses'] as List<dynamic>)
-        .map((e) => _$enumDecode(_$CampusEnumMap, e))
-        .toSet(),
-    (json['favoriteSports'] as List<dynamic>)
-        .map((e) => _$enumDecode(_$ActivityEnumMap, e))
-        .toSet(),
+    json['requesterUid'] as String?,
+    _$enumDecodeNullable(_$ActivityEnumMap, json['activity']),
+    _$enumDecodeNullable(_$CampusEnumMap, json['campus']),
+    DateTime.parse(json['timeFrom'] as String),
+    DateTime.parse(json['timeTo'] as String),
   );
 }
 
-Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
+Map<String, dynamic> _$RequestToJson(Request instance) => <String, dynamic>{
       'uid': instance.uid,
-      'email': instance.email,
-      'username': instance.username,
-      'phoneNumber': instance.phoneNumber,
-      'imageUid': instance.imageUid,
-      'preferredCampuses':
-          instance.preferredCampuses.map((e) => _$CampusEnumMap[e]).toList(),
-      'favoriteSports':
-          instance.favoriteSports.map((e) => _$ActivityEnumMap[e]).toList(),
+      'requesterUid': instance.requesterUid,
+      'activity': _$ActivityEnumMap[instance.activity],
+      'campus': _$CampusEnumMap[instance.campus],
+      'timeFrom': instance.timeFrom.toIso8601String(),
+      'timeTo': instance.timeTo.toIso8601String(),
     };
 
 K _$enumDecode<K, V>(
@@ -60,12 +52,16 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
-const _$CampusEnumMap = {
-  Campus.har: 'har',
-  Campus.givat: 'givat',
-  Campus.ein_karem: 'ein_karem',
-  Campus.rahovot: 'rahovot',
-};
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
 
 const _$ActivityEnumMap = {
   Activity.basketball: 'basketball',
@@ -76,4 +72,11 @@ const _$ActivityEnumMap = {
   Activity.skipping_rope: 'skipping_rope',
   Activity.swimming: 'swimming',
   Activity.football: 'football',
+};
+
+const _$CampusEnumMap = {
+  Campus.har: 'har',
+  Campus.givat: 'givat',
+  Campus.ein_karem: 'ein_karem',
+  Campus.rahovot: 'rahovot',
 };

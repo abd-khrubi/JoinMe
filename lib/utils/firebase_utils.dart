@@ -1,16 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/campus.dart';
+import 'package:flutter_app/models/request.dart';
+import 'package:flutter_app/services/request_service.dart';
 
 import '../main.dart';
 import '../models/app_user.dart';
 import '../services/user_service.dart';
 
 var _userService = locator<UserService>();
+var _requestService = locator<RequestService>();
 
-Future<AppUser> getUserByUid(String uid)  {
+Future<AppUser> getUserByUid(String uid) {
   return _userService.getUser(uid);
-
 }
 
 Future<AppUser> saveUser(AppUser user) async {
@@ -18,13 +20,13 @@ Future<AppUser> saveUser(AppUser user) async {
 }
 
 Future<AppUser?> login(String email, String pass) async {
-  if (FirebaseAuth.instance.currentUser != null) {
-    return getCurrentUser();
-  }
   try {
     return FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: pass)
-        .then((value) async => await _userService.getUser(value.user!.uid));
+        .then((value) {
+      _userService.currentUserUid = value.user!.uid;
+      return _userService.getUser(value.user!.uid);
+    });
   } on FirebaseAuthException catch (e) {
     print('Authentication Failed: $e');
   } catch (e) {
@@ -62,4 +64,8 @@ Future<AppUser?> register(String name, String email, String password) async {
     print(e);
   }
   return null;
+}
+
+Future<void> saveRequest(Request req) {
+  return _requestService.saveRequest(req);
 }

@@ -15,7 +15,7 @@ class RequestListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var srv = locator<UserService>();
     return FutureBuilder(
-      future: srv.getUser(request.uid),
+      future: srv.getUser(request.requesterUid!),
       builder: (context, snapshot) {
         print(snapshot);
         if (snapshot.hasData) {
@@ -62,6 +62,7 @@ class RequestListItem extends StatelessWidget {
                             child: Text(
                               '${activityToString(request.activity)}',
                               // style: TextStyle(fontSize: 20),
+
                             ),
                           ),
                         ],

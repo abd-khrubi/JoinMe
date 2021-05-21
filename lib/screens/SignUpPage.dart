@@ -18,36 +18,36 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  AppUser usr = AppUser(
-      '1',
-      'hussam@gmail.com',
-      'hussamsal',
-      '421',
-      'dsa',
-      {Campus.har},
-      {Activity.chess});
-
+  AppUser usr = AppUser('1', 'hussam@gmail.com', 'hussamsal', '421', 'dsa',
+      {Campus.har}, {Activity.chess});
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late File _image = File(
-      'assets/images/blank_avatar.png');
+  late File _image = File('assets/images/blank_avatar.png');
   bool hasPicked = false;
   final picker = ImagePicker();
   var picked = false;
 
   signUp(BuildContext context) {
-    if (userController.text != "" &&
-        emailController.text != "" &&
-        passwordController.text != "") {
-      register(userController.text, emailController.text, passwordController.text).then((user) {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ProfilePage(user!)));
-      }).catchError((error) {
-        print(error);
-      });
-    }
+    getUserByUid("OV4FtZiJZDhjMUnLoFKU6DlVNl82").then((value) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => ProfilePage(value)));
+    }).catchError((error) {
+      print(error);
+    });
+    // if (userController.text != "" &&
+    //     emailController.text != "" &&
+    //     passwordController.text != "") {
+    //   register(userController.text, emailController.text,
+    //           passwordController.text)
+    //       .then((user) {
+    //     Navigator.of(context)
+    //         .push(MaterialPageRoute(builder: (context) => ProfilePage(user!)));
+    //   }).catchError((error) {
+    //     print(error);
+    //   });
+    // }
   }
 
   Future getImage() async {
@@ -72,82 +72,72 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             body: Center(
                 child: ListView(
-                  padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
+              children: [
+                Column(
                   children: [
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            getImage();
-                          },
-                          child: CircleAvatar(
-                              radius: 50.0,
-                              backgroundImage: (hasPicked)
-                                  ? Image
-                                  .file(_image)
-                                  .image
-                                  : Image
-                                  .asset(
-                                  'assets/images/blank_avatar.png')
+                    GestureDetector(
+                      onTap: () {
+                        getImage();
+                      },
+                      child: CircleAvatar(
+                          radius: 50.0,
+                          backgroundImage: (hasPicked)
+                              ? Image.file(_image).image
+                              : Image.asset('assets/images/blank_avatar.png')
                                   .image),
-
-                        ),
-                        Text("Choose a profile picture",
-                            style: TextStyle(fontSize: 14.0)),
-                        SizedBox(height: 40),
-                        Row(
-                          children: [
-                            Text("Enter User Name",
-                                style: TextStyle(fontSize: 15)),
-                            Spacer()
-                          ],
-                        ),
-                        TextField(
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'User Name'),
-                            controller: userController),
-                        SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Text("Enter Email Address",
-                                style: TextStyle(fontSize: 15)),
-                            Spacer()
-                          ],
-                        ),
-                        TextField(
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: "Email"),
-                            controller: emailController),
-                        SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Text("Enter Password",
-                                style: TextStyle(fontSize: 15)),
-                            Spacer()
-                          ],
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Password'),
-                          enableSuggestions: false,
-                          autocorrect: false,
-                          obscureText: true,
-                          controller: passwordController,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            signUp(context);
-
-                          },
-                          child: Text(''),
-                        )
+                    ),
+                    Text("Choose a profile picture",
+                        style: TextStyle(fontSize: 14.0)),
+                    SizedBox(height: 40),
+                    Row(
+                      children: [
+                        Text("Enter User Name", style: TextStyle(fontSize: 15)),
+                        Spacer()
                       ],
+                    ),
+                    TextField(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'User Name'),
+                        controller: userController),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Text("Enter Email Address",
+                            style: TextStyle(fontSize: 15)),
+                        Spacer()
+                      ],
+                    ),
+                    TextField(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(), hintText: "Email"),
+                        controller: emailController),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Text("Enter Password", style: TextStyle(fontSize: 15)),
+                        Spacer()
+                      ],
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(), hintText: 'Password'),
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      obscureText: true,
+                      controller: passwordController,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        signUp(context);
+                      },
+                      child: Text(''),
                     )
                   ],
-                ))));
+                )
+              ],
+            ))));
     //todo: profile picture: empty avatar + clickable
     //todo: button sends data to database.
     //todo: optional sign in with google/fb

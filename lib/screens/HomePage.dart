@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/main.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/app_user.dart';
 import 'package:flutter_app/models/campus.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_app/screens/requests_screen.dart';
 import 'package:flutter_app/widgets/MyDrawer.dart';
 import 'package:flutter_app/widgets/request_list_item.dart';
 import 'package:flutter_app/screens/NotificationScreen.dart';
+import 'package:flutter_app/services/request_service.dart';
 
 class HomePage extends StatelessWidget {
   AppUser usr;
@@ -16,6 +18,7 @@ class HomePage extends StatelessWidget {
   HomePage(this.usr);
 
   Request request = Request(
+    '1',
     "hiiiiii",
     Activity.basketball,
     Campus.givat,
@@ -23,6 +26,7 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
   );
   Request request2 = Request(
+    '2',
     "hiiiiii",
     Activity.running,
     Campus.givat,
@@ -30,6 +34,7 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
   );
   Request request3 = Request(
+    '3',
     "hiiiiii",
     Activity.chess,
     Campus.givat,
@@ -37,6 +42,7 @@ class HomePage extends StatelessWidget {
     DateTime.now(),
   );
   Request request4 = Request(
+    '4',
     "hiiiiii",
     Activity.football,
     Campus.givat,
@@ -59,7 +65,7 @@ class HomePage extends StatelessWidget {
       request4,
       request4
     ];
-
+    RequestService srvs = locator<RequestService>();
     return Scaffold(
         appBar: AppBar(
           title: FittedBox(
@@ -80,10 +86,20 @@ class HomePage extends StatelessWidget {
         body: Stack(children: [
           Container(
             height: 550,
-            child: ListView.builder(
-              itemCount: newList.length,
-              itemBuilder: (context, index) {
-                return RequestListItem(newList[index]);
+            child: FutureBuilder(
+              future: srvs.loadRequests(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<Request> rList = snapshot.data as List<Request>;
+                  print(rList.length);
+                  return ListView.builder(
+                    itemCount: rList.length,
+                    itemBuilder: (context, index) {
+                      return RequestListItem(rList[index]);
+                    },
+                  );
+                }
+                return Center(child: CircularProgressIndicator());
               },
             ),
           ),
@@ -91,25 +107,25 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(top: 600),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-                    primary: Colors.deepPurpleAccent,
-                    shape: StadiumBorder(),
-                  ),
-                  child: Text(
-                    "Play",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ChooseCampusScreen()));
-                  },
-                ),
-              ),
+
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.only(top: 600),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 40.0, vertical: 20.0),
+                      primary: Colors.deepPurpleAccent,
+                      shape: StadiumBorder(),
+                    ),
+                    child: Text(
+                      "Play",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ChooseCampusScreen()));
+                    },
+                  )),
             ],
           )
         ]),
