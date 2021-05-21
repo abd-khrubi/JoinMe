@@ -35,7 +35,7 @@ class SignInPage extends StatelessWidget {
       login(_emailController.text, _passwordController.text).then((value) {
         //Navigation
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => HomePage(usr)));
+            MaterialPageRoute(builder: (context) => HomePage(value!)));
       }).catchError((error) {
         print(error);
       });
