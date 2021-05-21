@@ -9,8 +9,9 @@ part of 'request.dart';
 Request _$RequestFromJson(Map<String, dynamic> json) {
   return Request(
     json['uid'] as String?,
-    _$enumDecode(_$ActivityEnumMap, json['activity']),
-    _$enumDecode(_$CampusEnumMap, json['campus']),
+    json['requesterUid'] as String?,
+    _$enumDecodeNullable(_$ActivityEnumMap, json['activity']),
+    _$enumDecodeNullable(_$CampusEnumMap, json['campus']),
     DateTime.parse(json['timeFrom'] as String),
     DateTime.parse(json['timeTo'] as String),
   );
@@ -18,6 +19,7 @@ Request _$RequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$RequestToJson(Request instance) => <String, dynamic>{
       'uid': instance.uid,
+      'requesterUid': instance.requesterUid,
       'activity': _$ActivityEnumMap[instance.activity],
       'campus': _$CampusEnumMap[instance.campus],
       'timeFrom': instance.timeFrom.toIso8601String(),
@@ -50,11 +52,26 @@ K _$enumDecode<K, V>(
   ).key;
 }
 
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
 const _$ActivityEnumMap = {
   Activity.basketball: 'basketball',
   Activity.chess: 'chess',
-  Activity.football: 'football',
+  Activity.cycling: 'cycling',
+  Activity.working_out: 'working_out',
   Activity.running: 'running',
+  Activity.skipping_rope: 'skipping_rope',
+  Activity.swimming: 'swimming',
+  Activity.football: 'football',
 };
 
 const _$CampusEnumMap = {
