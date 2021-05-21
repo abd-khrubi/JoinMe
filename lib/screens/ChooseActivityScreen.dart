@@ -7,25 +7,6 @@ class ChooseActivityScreen extends StatelessWidget {
 
   ChooseActivityScreen(this.currentCampus);
 
-  var activities = [
-    "Basketball",
-    "Chess",
-    "Cycling",
-    "Working out",
-    "Running",
-    "skipping rope",
-    "Swimming"
-  ];
-  var images = [
-    "assets/images/basketball.png",
-    "assets/images/chess-pieces.png",
-    "assets/images/cycling.png",
-    "assets/images/dumbell.png",
-    "assets/images/shoes.png",
-    "assets/images/skipping-rope.png",
-    "assets/images/swimming.png"
-  ];
-
   void _buttonPress(
     Campus child,
   ) {

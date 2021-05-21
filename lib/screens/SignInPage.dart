@@ -17,6 +17,7 @@ import 'SignUpPage.dart';
 
 class SignInPage extends StatelessWidget {
 
+
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
 
