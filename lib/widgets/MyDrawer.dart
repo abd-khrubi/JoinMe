@@ -44,6 +44,11 @@ class MyDrawer extends StatelessWidget{
 
             },
           ),
+
+          ListTile(
+            title: Text("Info "),
+            leading: Icon(Icons.info),
+          ),
           ///For searching for activite
           ListTile(
             title: Text("Log out "),
@@ -56,7 +61,8 @@ class MyDrawer extends StatelessWidget{
                 print(error);
               });
             },
-          )
+          ),
+
         ],
       ),
     );

@@ -26,7 +26,7 @@ class _ChessMap2State extends State<ChessMap2> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gmap'),
+        title: Text('Mount Scopus - Chess'),
         backgroundColor: Colors.green[700],
       ),
       body: GoogleMap(

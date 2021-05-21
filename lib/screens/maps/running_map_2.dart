@@ -43,7 +43,7 @@ class _RunningMap2State extends State<RunningMap2> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gmap'),
+        title: Text('Givat Ram - Path 2'),
         backgroundColor: Colors.green[700],
       ),
       body: GoogleMap(

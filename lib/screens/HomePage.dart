@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                       shape: StadiumBorder(),
                     ),
                     child: Text(
-                      "Play",
+                      "Start Activity",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     onPressed: () {

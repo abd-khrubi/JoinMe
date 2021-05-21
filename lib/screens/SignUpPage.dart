@@ -32,12 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
   var picked = false;
 
   signUp(BuildContext context) {
-    // getUserByUid("OV4FtZiJZDhjMUnLoFKU6DlVNl82").then((value) {
-    //   Navigator.of(context).push(
-    //       MaterialPageRoute(builder: (context) => HomePage(value)));
-    // }).catchError((error) {
-    //   print(error);
-    // });
+
     if (userController.text != "" &&
         emailController.text != "" &&
         passwordController.text != "") {
