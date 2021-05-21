@@ -7,13 +7,14 @@ part 'request.g.dart';
 @JsonSerializable()
 class Request {
   String? uid;
+  String? requesterUid;
   Activity? activity;
   Campus? campus;
 
   DateTime timeFrom;
   DateTime timeTo;
 
-  Request(this.uid, this.activity, this.campus, this.timeFrom, this.timeTo);
+  Request(this.uid, this.requesterUid, this.activity, this.campus, this.timeFrom, this.timeTo);
 
   factory Request.fromJson(Map<String, dynamic> json) =>
       _$RequestFromJson(json);

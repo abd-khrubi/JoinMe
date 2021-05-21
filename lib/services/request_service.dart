@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/models/request.dart';
 
 class RequestService {
@@ -19,16 +18,16 @@ class RequestService {
     return _cache.values.toList();
   }
 
-  Future<List<Request>?> loadRequests() async {
+  Future<List<Request>> loadRequests() async {
     _ref.get().then((value) {
       value.docs.forEach((element) {
         var req = element.data();
-        _cache[req.uid!] = req;
+        req.uid = element.id;
+        _cache[element.id] = req;
       });
       return getCachedRequests();
-    }).onError((error, stackTrace) {
-      return getCachedRequests();
     });
+    return getCachedRequests();
   }
 
   Future<void> saveRequest(Request request) async {
@@ -36,6 +35,6 @@ class RequestService {
   }
 
   getRequestsStream() {
-      Stream<QuerySnapshot> s = _ref.snapshots();
+    Stream<QuerySnapshot> s = _ref.snapshots();
   }
 }

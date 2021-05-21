@@ -1,20 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-
-import 'package:flutter_app/models/activity.dart';
-import 'package:flutter_app/models/campus.dart';
-import 'package:flutter_app/screens/HomePage.dart';
-import 'package:flutter_app/screens/ProfilePage.dart';
-import 'package:flutter_app/screens/SignInPage.dart';
-import 'package:flutter_app/screens/choose_path_screen.dart';
-import 'package:flutter_app/screens/requests_screen.dart';
+import 'package:flutter_app/screens/google_map_screen.dart';
+import 'package:flutter_app/services/notification_service.dart';
 import 'package:flutter_app/services/request_service.dart';
 import 'package:get_it/get_it.dart';
-import 'package:flutter_app/models/app_user.dart';
 
-
-import 'models/app_user.dart';
 import 'services/user_service.dart';
 
 GetIt locator = GetIt.instance;
@@ -22,12 +12,12 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   locator.registerLazySingleton(() => new UserService());
   locator.registerLazySingleton(() => new RequestService());
+  locator.registerLazySingleton(() => new NotificationService());
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   setupLocator();
 
   runApp(MyApp());
@@ -37,13 +27,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-    var usr = new AppUser('hiiiiii', 'whaaat@gmail.com', 'nammmmmme', '0002145',
-        '', {Campus.givat, Campus.har}, {Activity.basketball});
-    // saveUser(usr).then((value) => {
-    //   print('Done saving user')
-    // });
-
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
