@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/google_map_screen.dart';
+import 'package:flutter_app/screens/maps/running_map_har.dart';
 import 'package:flutter_app/services/notification_service.dart';
 import 'package:flutter_app/services/request_service.dart';
 import 'package:get_it/get_it.dart';
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       ),
 
       // home: ChoosePathScreen(Activity.running, Campus.rahovot),]
-      home: GoogleMapScreen(),
+      home: RunningMapHar(),
       debugShowCheckedModeBanner: false,
     );
   }
