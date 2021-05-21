@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       ),
 
       // home: ChoosePathScreen(Activity.running, Campus.rahovot),]
-      home: GoogleMapScreen(),
+      home: SignInPage(),
       debugShowCheckedModeBanner: false,
     );
   }
