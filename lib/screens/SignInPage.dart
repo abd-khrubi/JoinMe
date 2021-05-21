@@ -16,9 +16,6 @@ import 'HomePage.dart';
 import 'SignUpPage.dart';
 
 class SignInPage extends StatelessWidget {
-  AppUser usr = new AppUser('1', 'hussam@gmail.com', 'hussamsal', '421', 'dsa',
-      {Campus.har}, {Activity.chess});
-
 
 
   TextEditingController _emailController = new TextEditingController();
@@ -26,11 +23,7 @@ class SignInPage extends StatelessWidget {
 
 
   _login(BuildContext context) {
-    // FirebaseAuth.instance.signOut().then((value) {
-    //   print('done');
-    // }).catchError((onError) {
-    //   print(onError);
-    // });
+
     if (_emailController.text != "" && _passwordController.text != "") {
       login(_emailController.text, _passwordController.text).then((value) {
         //Navigation
@@ -105,8 +98,9 @@ class SignInPage extends StatelessWidget {
                   child: Text('Login'),
                   onPressed: () {
                     //TODO : return data from firebase
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HomePage(usr)));
+                    // Navigator.of(context).push(
+                    //     MaterialPageRoute(builder: (context) => HomePage(usr)));
+                    _login(context);
                   },
                 )),
 
