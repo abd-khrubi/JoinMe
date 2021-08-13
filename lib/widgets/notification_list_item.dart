@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/activity.dart';
 import 'package:flutter_app/models/app_user.dart';
@@ -13,9 +15,15 @@ class NotificationListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var currentUser = getCurrentUser();
     var userId = currentUser.uid;
+    var names = ["Abed", "Hussam", "Ahmad", 'Mohammad', "Razi"];
 
+    final _random = new Random();
+
+// generate a random index based on the list length
+// and use it to retrieve the element
+    var name = names[_random.nextInt(names.length)];
     var idToShow =
-        (userId == notification.responderUid) ? "Abd" : currentUser.username;
+        (userId == notification.responderUid) ? name : currentUser.username;
 
     return Container(
       padding: EdgeInsets.fromLTRB(15, 15, 20, 15),
